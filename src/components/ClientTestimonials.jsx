@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const testimonials = [
   {
@@ -53,122 +53,151 @@ const testimonials = [
 
 const ClientTestimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [expandedCards, setExpandedCards] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    const step = isMobile ? 1 : 2;
+    setCurrentIndex((prevIndex) => (prevIndex + step) % testimonials.length);
   };
 
   const prevTestimonial = () => {
+    const step = isMobile ? 1 : 2;
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+      prevIndex === 0 ? testimonials.length - step : prevIndex - step
     );
   };
 
+  const toggleExpanded = (index) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
+  const truncateText = (text, limit = 150) => {
+    if (text.length <= limit) return text;
+    return text.slice(0, limit) + '...';
+  };
+
+  const testimonialsToShow = isMobile 
+    ? [testimonials[currentIndex]]
+    : [
+        testimonials[currentIndex],
+        testimonials[(currentIndex + 1) % testimonials.length]
+      ];
+
   return (
-    <section className="relative overflow-hidden bg-slate-800" style={{ height: '80vh' }}>
+    <section className="relative overflow-hidden" style={{ height: '80vh', backgroundColor: '#09252c' }}>
       <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-        {/* Header */}
-        <div className="text-center mb-8 md:mb-12">
+        {/* Header with Navigation */}
+        <div className="flex justify-between items-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             Client <span className="text-emerald-400">Testimonials</span>
           </h2>
+          
+          {/* Navigation Arrows - Top Right */}
+          <div className="flex space-x-2">
+            <button
+              onClick={prevTestimonial}
+              className="bg-slate-700 hover:bg-slate-600 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-200 border border-slate-600 hover:border-emerald-400"
+              aria-label="Previous testimonials"
+            >
+              <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <button
+              onClick={nextTestimonial}
+              className="bg-slate-700 hover:bg-slate-600 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-200 border border-slate-600 hover:border-emerald-400"
+              aria-label="Next testimonials"
+            >
+              <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Testimonials Container */}
         <div className="relative flex-1 flex items-center">
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevTestimonial}
-            className="absolute left-4 md:left-8 z-10 bg-slate-700 hover:bg-slate-600 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-200 border border-slate-600 hover:border-emerald-400"
-            aria-label="Previous testimonial"
-          >
-            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-4 md:right-8 z-10 bg-slate-700 hover:bg-slate-600 text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-200 border border-slate-600 hover:border-emerald-400"
-            aria-label="Next testimonial"
-          >
-            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          {/* Testimonials Slider */}
-          <div className="w-full px-16 md:px-24">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="w-full flex-shrink-0 px-4"
-                >
-                  <div className="max-w-6xl mx-auto">
-                    <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                      {/* Testimonial Content */}
-                      <div className="order-2 md:order-1">
-                        <div className="bg-slate-700/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-600/50">
-                          <div className="mb-6">
-                            <svg className="w-8 h-8 text-emerald-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                            </svg>
-                            <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                              "{testimonial.quote}"
-                            </p>
-                          </div>
-                          
-                          {/* Client Info */}
-                          <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-emerald-400/50">
-                              <img 
-                                src={testimonial.avatar} 
-                                alt={testimonial.name}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                            <div>
-                              <h4 className="font-semibold text-white text-lg md:text-xl">{testimonial.name}</h4>
-                              <p className="text-gray-400 text-sm md:text-base">{testimonial.title}</p>
-                            </div>
-                          </div>
-                        </div>
+          {/* Testimonials Grid */}
+          <div className="w-full">
+            <div className="max-w-6xl mx-auto">
+              <div className={`grid gap-6 md:gap-8 ${isMobile ? 'grid-cols-1' : 'md:grid-cols-2'}`}>
+                {testimonialsToShow.map((testimonial, index) => {
+                  const globalIndex = isMobile ? currentIndex : (currentIndex + index) % testimonials.length;
+                  const isExpanded = expandedCards[globalIndex];
+                  const shouldTruncate = testimonial.quote.length > 150;
+                  
+                  return (
+                    <div
+                      key={globalIndex}
+                      className="bg-slate-700/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-600/50 transition-all duration-300 hover:border-emerald-400/50"
+                    >
+                      <div className="mb-6">
+                        <svg className="w-8 h-8 text-emerald-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                        </svg>
+                        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                          "{isExpanded || !shouldTruncate ? testimonial.quote : truncateText(testimonial.quote)}"
+                        </p>
+                        {shouldTruncate && (
+                          <button
+                            onClick={() => toggleExpanded(globalIndex)}
+                            className="text-emerald-400 text-sm mt-2 hover:text-emerald-300 transition-colors"
+                          >
+                            {isExpanded ? 'Show less' : 'Read more'}
+                          </button>
+                        )}
                       </div>
-
-                      {/* Large Profile Image */}
-                      <div className="order-1 md:order-2 flex justify-center">
-                        <div className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-emerald-400/30 shadow-2xl">
+                      
+                      {/* Client Info */}
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-emerald-400/50 flex-shrink-0">
                           <img 
                             src={testimonial.avatar} 
                             alt={testimonial.name}
                             className="w-full h-full object-cover"
                           />
                         </div>
+                        <div className="min-w-0 flex-1">
+                          <h4 className="font-semibold text-white text-sm md:text-lg">{testimonial.name}</h4>
+                          <p className="text-gray-400 text-xs md:text-sm leading-tight">{testimonial.title}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Dots Indicator */}
         <div className="flex justify-center space-x-2 mt-8">
-          {testimonials.map((_, index) => (
+          {Array.from({ length: isMobile ? testimonials.length : Math.ceil(testimonials.length / 2) }).map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => setCurrentIndex(isMobile ? index : index * 2)}
               className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-200 ${
-                index === currentIndex 
-                  ? 'bg-emerald-400 scale-125' 
-                  : 'bg-slate-600 hover:bg-slate-500'
+                isMobile 
+                  ? (currentIndex === index ? 'bg-emerald-400 scale-125' : 'bg-slate-600 hover:bg-slate-500')
+                  : (Math.floor(currentIndex / 2) === index ? 'bg-emerald-400 scale-125' : 'bg-slate-600 hover:bg-slate-500')
               }`}
-              aria-label={`Go to testimonial ${index + 1}`}
+              aria-label={isMobile ? `Go to testimonial ${index + 1}` : `Go to testimonials ${index * 2 + 1} and ${index * 2 + 2}`}
             />
           ))}
         </div>
