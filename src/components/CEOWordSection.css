@@ -1,0 +1,22 @@
+/* Text reveal effect styling for CEOWordSection component */
+.text .reveal-text {
+  background: linear-gradient(
+    to right,
+    rgb(255, 255, 255) 50%,
+    rgb(107, 114, 128) 50%
+  );
+  background-size: 200% 100%;
+  background-position-x: 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  margin-bottom: -0.5rem;
+  line-height: 1.1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .text .reveal-text {
+    margin-bottom: -0.25rem;
+  }
+} 

@@ -1,0 +1,99 @@
+/* Timeline styling for DistinctiveApproach component */
+.timeline-line {
+  background-color: var(--timeline-color, #e5e5e5);
+  transition: all 0.3s ease;
+}
+
+.timeline-circle {
+  background-color: var(--timeline-color, #e5e5e5);
+  transition: all 0.3s ease;
+}
+
+.timeline-step-container:not(:last-child) .timeline-line {
+  height: calc(100% + 4rem) !important;
+}
+
+.timeline-step-container:last-child .timeline-line {
+  height: 50% !important;
+}
+
+/* Enhanced shadow utilities */
+.shadow-3xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Smooth transitions for all interactive elements */
+.timeline-step-container * {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 1024px) {
+  .timeline-step-container {
+    margin-bottom: 3rem;
+  }
+  
+  .timeline-circle {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-step-container {
+    margin-bottom: 2rem;
+  }
+  
+  .circle-wrapper {
+    left: -2px;
+  }
+  
+  .timeline-line {
+    width: 2px;
+  }
+}
+
+/* Enhanced hover effects */
+.timeline-step-container:hover .timeline-circle {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-text {
+  background: linear-gradient(-45deg, #22c55e, #3b82f6, #22c55e, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradient-shift 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #22c55e, #16a34a);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #16a34a, #15803d);
+} 
