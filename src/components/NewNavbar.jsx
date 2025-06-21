@@ -15,7 +15,7 @@ import {
 const GrowthfinitiLogo = () => {
   return (
     <a
-      href="#"
+      href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
     >
       {/* Logo Icon */}
@@ -64,7 +64,7 @@ const NewNavbar = () => {
     <div className="relative w-full">
       <Navbar>
         {/* Desktop Navigation */}
-        <NavBody className="bg-transparent">
+        <NavBody>
           <GrowthfinitiLogo />
           <NavItems 
             items={navItems} 
@@ -83,7 +83,7 @@ const NewNavbar = () => {
         </NavBody>
 
         {/* Mobile Navigation */}
-        <MobileNav className="bg-transparent">
+        <MobileNav>
           <MobileNavHeader>
             <GrowthfinitiLogo />
             <MobileNavToggle
@@ -95,7 +95,14 @@ const NewNavbar = () => {
           <MobileNavMenu
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
-            className="bg-slate-800/95 backdrop-blur-md border border-slate-700/50"
+            className="bg-[#1e3e46]/90 backdrop-blur-md border border-[#1e3e46]/30"
+            style={{
+              background: 'rgba(30, 62, 70, 0.9)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(30, 62, 70, 0.3)',
+              boxShadow: '0 8px 32px rgba(30, 62, 70, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            }}
           >
             {navItems.map((item, idx) => (
               <a

@@ -17,6 +17,8 @@ import ClientTestimonials from './components/ClientTestimonials';
 import QuizSection from './components/QuizSection';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
+import QuizPage from './pages/QuizPage';
+import AboutUsPage from './pages/AboutUsPage';
 // Admin Pages
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
@@ -49,8 +51,10 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<HomePage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogDetailPage />} />
+            <Route path="/quiz" element={<QuizPage />} />
             
             {/* Admin Login Route */}
             <Route path="/admin" element={<AdminLogin />} />

@@ -48,6 +48,7 @@ export const NavBody = ({ children, className, visible }) => {
           : "none",
         width: visible ? "60%" : "100%",
         y: visible ? 10 : 0,
+        backgroundColor: visible ? "#1e3e46" : "transparent",
       }}
       transition={{
         type: "spring",
@@ -59,7 +60,7 @@ export const NavBody = ({ children, className, visible }) => {
       }}
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-6 py-3 lg:flex dark:bg-transparent",
-        visible && "bg-white/90 dark:bg-neutral-950/90",
+        visible && "bg-[#1e3e46]",
         className,
       )}
     >
@@ -113,6 +114,7 @@ export const MobileNav = ({ children, className, visible }) => {
         paddingLeft: visible ? "12px" : "0px",
         borderRadius: visible ? "4px" : "2rem",
         y: visible ? 10 : 0,
+        backgroundColor: visible ? "#1e3e46" : "transparent",
       }}
       transition={{
         type: "spring",
@@ -121,7 +123,7 @@ export const MobileNav = ({ children, className, visible }) => {
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-white/90 dark:bg-neutral-950/90",
+        visible && "bg-[#1e3e46]",
         className,
       )}
     >
