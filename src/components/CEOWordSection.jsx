@@ -86,25 +86,7 @@ const CEOWordSection = () => {
             </div>
           </div>
 
-          {/* CEO Image */}
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-emerald-400 rounded-full opacity-20 blur-xl scale-110"></div>
-              
-              {/* Main image */}
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-emerald-400/30 shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face&auto=format&q=80" 
-                  alt="CEO Bhavesh Sanghvi"
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>
