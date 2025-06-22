@@ -18,6 +18,7 @@ import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import QuizPage from './pages/QuizPage';
 import AboutUsPage from './pages/AboutUsPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 
 // Admin Pages
 import AdminLogin from './pages/AdminLogin';
@@ -60,6 +61,7 @@ function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogDetailPage />} />
             <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 
             {/* Admin Login Route */}
             <Route path="/admin" element={<AdminLogin />} />
