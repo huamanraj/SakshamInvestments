@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid3X3, Target, Users, Shield, TrendingUp, BarChart3, Scale, Heart } from 'lucide-react';
+import { Grid3X3, Target, Users, Shield, TrendingUp, BarChart3, Scale, Heart, Briefcase } from 'lucide-react';
 
 const AboutUs = () => {
   return (
@@ -106,48 +106,36 @@ const AboutUs = () => {
             </div>
           </div>
 
-          {/* Our Team Section */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Our <span className="text-emerald-400">Team</span>
-            </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Meet the Growthfiniti team that is here to help you make the best 
-              decisions for your investments and create a strong portfolio that reflects 
-              leadership & consistency.
-            </p>
-          </div>
-
-          {/* Team Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {[
-              { name: 'Bhavesh Sanghvi', role: 'CEO & Founder' },
-              { name: 'Ankush Shah', role: 'Chief Investment Officer' },
-              { name: 'Aditya Padman', role: 'Senior Portfolio Manager' },
-              { name: 'Grishma Shah', role: 'Head of Operations' },
-              { name: 'Raj Gala', role: 'Investment Analyst' },
-              { name: 'Nitesh Mirgh', role: 'Financial Advisor' },
-              { name: 'Komalchand Kumri', role: 'Client Relations Manager' },
-              { name: 'Bhavan Shah', role: 'Research Associate' }
-            ].map((member, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                  <Users className="w-10 h-10 text-white" strokeWidth={1.5} />
+          {/* Our Work Section */}
+          <div className="relative bg-gradient-to-br from-emerald-600/20 to-emerald-700/20 rounded-3xl p-12 text-white overflow-hidden mb-20">
+            <div className="relative z-10">
+              <div className="text-center mb-10">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  Our <span className="text-emerald-400">Work</span>
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-emerald-400 mb-2">20+</div>
+                  <div className="text-gray-300">Years of Expertise</div>
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-1">{member.name}</h3>
-                <p className="text-gray-400 text-sm">{member.role}</p>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-emerald-400 mb-2">₹300Cr+</div>
+                  <div className="text-gray-300">Assets Under Management</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-emerald-400 mb-2">1000+</div>
+                  <div className="text-gray-300">Satisfied Clients</div>
+                </div>
               </div>
-            ))}
-          </div>
-
-          {/* Additional team member */}
-          <div className="flex justify-center">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10 hover:bg-white/10 transition-all duration-300 w-64">
-              <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <Users className="w-10 h-10 text-white" strokeWidth={1.5} />
-              </div>
-              <h3 className="text-white font-semibold text-lg mb-1">Priya Sharma</h3>
-              <p className="text-gray-400 text-sm">Marketing Director</p>
+              <p className="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto text-center">
+                With over 20 years of unmatched expertise in wealth creation, we've proudly managed ₹300 Crores+ in Assets Under Management (AUM) 
+                for more than 1000 satisfied clients across India and abroad, delivering personalized financial planning, mutual fund advisory, 
+                SIP strategies, PMS & AIF solutions, tax-saving portfolios, and NRI investment services — our proven, time-tested approach helps 
+                investors grow, preserve, and transfer wealth with confidence across every market cycle.
+              </p>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-600/10 rounded-full blur-3xl"></div>
             </div>
           </div>
         </div>

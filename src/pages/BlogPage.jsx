@@ -8,6 +8,11 @@ const BlogPage = () => {
   const { blogs, fetchBlogs, loading, getThumbnailUrl } = useBlog();
   const [selectedCategory, setSelectedCategory] = useState('All');
   
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Fetch blogs on component mount
   useEffect(() => {
     fetchBlogs(); // This will fetch only published blogs by default

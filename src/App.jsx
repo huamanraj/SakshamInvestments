@@ -19,6 +19,7 @@ import BlogDetailPage from './pages/BlogDetailPage';
 import QuizPage from './pages/QuizPage';
 import AboutUsPage from './pages/AboutUsPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import ContactPage from './pages/ContactPage';
 
 // Admin Pages
 import AdminLogin from './pages/AdminLogin';
@@ -62,6 +63,7 @@ function App() {
             <Route path="/blog/:id" element={<BlogDetailPage />} />
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/contact" element={<ContactPage />} />
 
             {/* Admin Login Route */}
             <Route path="/admin" element={<AdminLogin />} />

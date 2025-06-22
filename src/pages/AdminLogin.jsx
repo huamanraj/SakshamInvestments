@@ -93,6 +93,11 @@ const AdminLogin = () => {
           <p className="mt-2 text-sm text-gray-600">
             Sign in to manage your blog content
           </p>
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+            <p className="text-amber-800 text-sm font-medium">
+              ⚠️ Notice: This login is strictly reserved for website owners and authorized administrators only. Unauthorized access attempts are prohibited.
+            </p>
+          </div>
         </div>
 
         {/* Login Form */}
