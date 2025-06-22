@@ -99,10 +99,10 @@ const ClientTestimonials = () => {
       ];
 
   return (
-    <section className="relative overflow-hidden" style={{ height: '80vh', backgroundColor: '#09252c' }}>
-      <div className="container mx-auto px-4 h-full flex flex-col justify-center">
+    <section className="relative py-10 overflow-hidden" style={{ height: '80vh', backgroundColor: '#09252c' }}>
+      <div className="container mx-auto sm:px-44 px-4 h-full flex flex-col justify-center ">
         {/* Header with Navigation */}
-        <div className="flex justify-between items-center mb-8 md:mb-12">
+        <div className="flex justify-between  items-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             Client <span className="text-emerald-400">Testimonials</span>
           </h2>

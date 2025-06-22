@@ -84,3 +84,8 @@
     max-height: calc(1.4em * 2);
   }
 }
+/* Enable smooth scrolling for the whole document */
+html {
+  scroll-behavior: smooth;
+}
+

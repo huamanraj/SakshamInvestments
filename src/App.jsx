@@ -18,11 +18,17 @@ import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import QuizPage from './pages/QuizPage';
 import AboutUsPage from './pages/AboutUsPage';
+
 // Admin Pages
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminBlogs from './pages/AdminBlogs';
 import AdminCreateBlog from './pages/AdminCreateBlog';
+
+
+
+
+
 
 // Home Page Component
 const HomePage = () => {
@@ -31,7 +37,6 @@ const HomePage = () => {
       <HeroSection />
       <AllocationConundrum />
       <CoreCompetency />
-      
       <DistinctiveApproach />
       <CEOWordSection />
       <LeadershipPortfolios />
@@ -44,6 +49,7 @@ const HomePage = () => {
 
 function App() {
   return (
+    
     <AuthProvider>
       <BlogProvider>
         <div className="App">
@@ -54,10 +60,10 @@ function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogDetailPage />} />
             <Route path="/quiz" element={<QuizPage />} />
-            
+
             {/* Admin Login Route */}
             <Route path="/admin" element={<AdminLogin />} />
-            
+
             {/* Protected Admin Routes */}
             <Route path="/admin/dashboard" element={
               <ProtectedRoute>
@@ -66,7 +72,7 @@ function App() {
                 </AdminLayout>
               </ProtectedRoute>
             } />
-            
+
             <Route path="/admin/blogs" element={
               <ProtectedRoute>
                 <AdminLayout>
@@ -74,7 +80,7 @@ function App() {
                 </AdminLayout>
               </ProtectedRoute>
             } />
-            
+
             <Route path="/admin/blogs/create" element={
               <ProtectedRoute>
                 <AdminLayout>
@@ -82,7 +88,7 @@ function App() {
                 </AdminLayout>
               </ProtectedRoute>
             } />
-            
+
             <Route path="/admin/blogs/edit/:id" element={
               <ProtectedRoute>
                 <AdminLayout>
@@ -91,7 +97,7 @@ function App() {
               </ProtectedRoute>
             } />
           </Routes>
-          
+
           {/* Toast Notifications */}
           <Toaster
             position="top-right"

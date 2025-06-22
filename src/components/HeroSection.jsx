@@ -1,5 +1,4 @@
 import React from 'react';
-import SplashCursor from './ui/SplashCursor'
 
 
 const HeroSection = () => {
@@ -14,7 +13,7 @@ const HeroSection = () => {
           <br />
           Wealth Solutions
         </h1>
-        <SplashCursor />
+        
         <p className="text-xl md:text-2xl lg:text-3xl text-white/90 mb-4 leading-relaxed">
           Building wealth, securing futures
         </p>
