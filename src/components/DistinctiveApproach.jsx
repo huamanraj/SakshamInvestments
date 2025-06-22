@@ -240,7 +240,7 @@ const DistinctiveApproach = () => {
             ))}
           </div>
         </div>
-      </div>
+      
     </section>
   );
 };
