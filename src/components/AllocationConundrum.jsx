@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useAnimation } from 'framer-motion';
+import Threads from './ui/Threads';
 
 const AllocationConundrum = () => {
   const ref = useRef(null);
@@ -73,7 +74,7 @@ const AllocationConundrum = () => {
   return (
     <section 
       ref={ref}
-      className="py-20 bg-gradient-to-br from-slate-800 via-teal-800 to-slate-900 relative overflow-hidden"
+      className="h-auto pt-20 bg-[#09252c] relative overflow-hidden flex items-center justify-center"
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -89,7 +90,7 @@ const AllocationConundrum = () => {
           }}
           className="absolute top-20 left-20 opacity-10"
         >
-          <img src="/fund1.svg" alt="" className="w-16 h-16" />
+          <img src="/growthfiniti.com.svg" alt="" className="w-16 h-16" />
         </motion.div>
 
         <motion.div
@@ -103,7 +104,7 @@ const AllocationConundrum = () => {
           }}
           className="absolute top-40 right-32 opacity-10"
         >
-          <img src="/fund3.svg" alt="" className="w-20 h-20" />
+          <img src="/growthfiniti.com.svg" alt="" className="w-20 h-20" />
         </motion.div>
 
         <motion.div
@@ -117,7 +118,7 @@ const AllocationConundrum = () => {
           }}
           className="absolute bottom-20 left-32 opacity-10"
         >
-          <img src="/fund4.svg" alt="" className="w-14 h-14" />
+          <img src="/growthfiniti.com.svg" alt="" className="w-14 h-14" />
         </motion.div>
 
         <motion.div
@@ -131,10 +132,9 @@ const AllocationConundrum = () => {
           }}
           className="absolute bottom-32 right-20 opacity-10"
         >
-          <img src="/fund7.svg" alt="" className="w-18 h-18" />
+          <img src="/growthfiniti.com.svg" alt="" className="w-18 h-18" />
         </motion.div>
 
-        {/* Dash patterns */}
         <motion.div
           animate={{ 
             rotate: [0, 180, 360],
@@ -147,7 +147,7 @@ const AllocationConundrum = () => {
           }}
           className="absolute top-60 left-1/4"
         >
-          <img src="/dash.svg" alt="" className="w-12 h-12" />
+          <img src="/growthfiniti.com.svg" alt="" className="w-12 h-12" />
         </motion.div>
 
         <motion.div
@@ -162,7 +162,35 @@ const AllocationConundrum = () => {
           }}
           className="absolute bottom-40 right-1/3"
         >
-          <img src="/dash.svg" alt="" className="w-10 h-10" />
+          <img src="/growthfiniti.com.svg" alt="" className="w-10 h-10" />
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            rotate: 360,
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            rotate: { duration: 22, repeat: Infinity, ease: "linear" },
+            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="absolute top-1/2 left-10 opacity-10"
+        >
+          <img src="/growthfiniti.com.svg" alt="" className="w-16 h-16" />
+        </motion.div>
+
+        <motion.div
+          animate={{ 
+            rotate: -360,
+            y: [0, 25, 0]
+          }}
+          transition={{ 
+            rotate: { duration: 28, repeat: Infinity, ease: "linear" },
+            y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="absolute top-1/2 right-10 opacity-10"
+        >
+          <img src="/growthfiniti.com.svg" alt="" className="w-18 h-18" />
         </motion.div>
       </div>
 
@@ -180,7 +208,7 @@ const AllocationConundrum = () => {
           </motion.h2>
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold text-slate-400 mb-16"
+            className="text-4xl md:text-6xl font-bold text-emerald-400 mb-16"
           >
             Conundrum
           </motion.h2>
@@ -196,7 +224,7 @@ const AllocationConundrum = () => {
                 className="text-center relative z-10"
               >
                 <div className="text-6xl md:text-7xl font-bold text-emerald-400 mb-4">
-                  <AnimatedNumber value="1730" suffix="+" />
+                  <AnimatedNumber value="2000" suffix="+" />
                 </div>
                 <p className="text-xl text-slate-300">Mutual Funds</p>
               </motion.div>
@@ -214,11 +242,11 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="/fund1.svg" alt="" className="w-24 h-24" />
+                <img src="/growthfiniti.com.svg" alt="" className="w-24 h-24" />
               </motion.div>
             </motion.div>
 
-            {/* Global Funds */}
+            {/* PMS */}
             <motion.div 
               variants={itemVariants}
               className="relative"
@@ -228,9 +256,9 @@ const AllocationConundrum = () => {
                 className="text-center relative z-10"
               >
                 <div className="text-6xl md:text-7xl font-bold text-amber-400 mb-4">
-                  <AnimatedNumber value="100000" suffix="+" />
+                  <AnimatedNumber value="1000" suffix="+" />
                 </div>
-                <p className="text-xl text-slate-300">Global Funds</p>
+                <p className="text-xl text-slate-300">PMS</p>
               </motion.div>
               
               {/* Background Icon */}
@@ -246,11 +274,11 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="/core-2.svg" alt="" className="w-24 h-24" />
+                <img src="/growthfiniti.com.svg" alt="" className="w-24 h-24" />
               </motion.div>
             </motion.div>
 
-            {/* PMS, AIF's */}
+            {/* AIF */}
             <motion.div 
               variants={itemVariants}
               className="relative"
@@ -260,9 +288,9 @@ const AllocationConundrum = () => {
                 className="text-center relative z-10"
               >
                 <div className="text-6xl md:text-7xl font-bold text-pink-400 mb-4">
-                  Over <AnimatedNumber value="1000" />
+                  <AnimatedNumber value="500" suffix="+" />
                 </div>
-                <p className="text-xl text-slate-300">PMS, AIF's</p>
+                <p className="text-xl text-slate-300">AIF</p>
               </motion.div>
               
               {/* Background Icon */}
@@ -278,12 +306,21 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="/fund7.svg" alt="" className="w-24 h-24" />
+                <img src="/growthfiniti.com.svg" alt="" className="w-24 h-24" />
               </motion.div>
             </motion.div>
           </div>
         </motion.div>
+        <div style={{ width: '100%', height: '400px', position: 'relative' }}>
+          <Threads
+            amplitude={3}
+            distance={0}
+            enableMouseInteraction={true}
+          />
+        </div>
       </div>
+
+      
     </section>
   );
 };

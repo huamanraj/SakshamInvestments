@@ -8,7 +8,6 @@ import AdminLayout from './layouts/AdminLayout';
 import HeroSection from './components/HeroSection';
 import AllocationConundrum from './components/AllocationConundrum';
 import CoreCompetency from './components/CoreCompetency';
-import FunnelSection from './components/FunnelSection';
 import DistinctiveApproach from './components/DistinctiveApproach';
 import CEOWordSection from './components/CEOWordSection';
 import LeadershipPortfolios from './components/LeadershipPortfolios';
@@ -32,7 +31,7 @@ const HomePage = () => {
       <HeroSection />
       <AllocationConundrum />
       <CoreCompetency />
-      <FunnelSection />
+      
       <DistinctiveApproach />
       <CEOWordSection />
       <LeadershipPortfolios />

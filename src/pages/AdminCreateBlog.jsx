@@ -130,12 +130,18 @@ const AdminCreateBlog = () => {
     setUploadingThumbnail(true);
     try {
       const fileId = `blog_${Date.now()}`;
-      const response = await storage.createFile(STORAGE_BUCKET_ID, fileId, thumbnail);
+      const response = await storage.createFile(
+        STORAGE_BUCKET_ID, 
+        fileId, 
+        thumbnail,
+        ['read("any")'] // Allow public read access to thumbnails
+      );
       setUploadingThumbnail(false);
       return response.$id;
     } catch (error) {
       setUploadingThumbnail(false);
-      throw new Error('Failed to upload thumbnail');
+      console.error('Thumbnail upload error:', error);
+      throw new Error(`Failed to upload thumbnail: ${error.message}`);
     }
   }, [thumbnail, formData.thumbnailId]);
 

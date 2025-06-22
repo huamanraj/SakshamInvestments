@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MessageCircle } from "lucide-react";
 import {
   Navbar,
   NavBody,
@@ -16,20 +17,14 @@ const GrowthfinitiLogo = () => {
   return (
     <a
       href="/"
-      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
+      className="relative z-20 mr-4 flex items-center px-2 py-1"
     >
-      {/* Logo Icon */}
-      <div className="w-8 h-8 flex items-center justify-center">
-        <svg
-          viewBox="0 0 24 24"
-          className="w-8 h-8 text-white"
-          fill="currentColor"
-        >
-          <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" />
-          <path d="M8 12l2 2 4-4" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
-      <span className="font-medium text-white text-lg">Growthfiniti</span>
+      {/* Logo Image */}
+      <img
+        src="/logo.png"
+        alt="Growthfiniti Logo"
+        className="h-10 w-auto"
+      />
     </a>
   );
 };
@@ -40,14 +35,7 @@ const NewNavbar = () => {
       name: "About Us",
       link: "/about-us",
     },
-    {
-      name: "PMS",
-      link: "/pms",
-    },
-    {
-      name: "Careers",
-      link: "/careers",
-    },
+    
     {
       name: "Blog",
       link: "/blog",
@@ -59,6 +47,29 @@ const NewNavbar = () => {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // WhatsApp chat function
+  const openWhatsAppChat = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    console.log('WhatsApp button clicked'); // Debug log
+    
+    const phoneNumber = "918051733380";
+    const message = "Hi! Just came from website!";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    console.log('Opening WhatsApp URL:', whatsappUrl); // Debug log
+    
+    // Try multiple methods to ensure it works
+    try {
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    } catch (error) {
+      console.error('Error opening WhatsApp:', error);
+      // Fallback: try direct location change
+      window.location.href = whatsappUrl;
+    }
+  };
 
   return (
     <div className="relative w-full">
@@ -72,13 +83,14 @@ const NewNavbar = () => {
             onItemClick={() => {}}
           />
           <div className="flex items-center gap-4">
-            <NavbarButton 
-              variant="gradient"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
-              href="https://growthfiniti.investwell.app/app/#/login"
+            <button
+              onClick={openWhatsAppChat}
+              className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2 rounded-full font-medium transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2 hover:-translate-y-0.5 cursor-pointer relative z-[70]"
+              type="button"
+              style={{ cursor: 'pointer' }}
             >
-              Login
-            </NavbarButton>
+              <MessageCircle size={18} />
+            </button>
           </div>
         </NavBody>
 
@@ -115,14 +127,18 @@ const NewNavbar = () => {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4 pt-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="gradient"
-                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-200"
-                href="https://growthfiniti.investwell.app/app/#/login"
+              <button
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  openWhatsAppChat(e);
+                }}
+                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2 rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                type="button"
+                style={{ cursor: 'pointer' }}
               >
-                Login
-              </NavbarButton>
+                <MessageCircle size={18} />
+                WhatsApp
+              </button>
             </div>
           </MobileNavMenu>
         </MobileNav>
