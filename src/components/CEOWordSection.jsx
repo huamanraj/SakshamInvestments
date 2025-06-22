@@ -30,44 +30,44 @@ const CEOWordSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="min-h-screen bg-gradient-to-br from-slate-800 via-teal-900 to-slate-900 flex items-center justify-center px-8 py-20 relative overflow-hidden"
+      className="min-h-screen bg-[#09252c]  flex items-center justify-center px-8 py-20 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="mx-auto w-full">
+        <div className=" grid-cols-1 flex  justify-center gap-16 items-center">
           {/* Text Content */}
           <div 
             ref={textRef}
             className="text space-y-4"
           >
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              At Growthfiniti
+              At Saksham Investments,
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              Wealth, we envision a
+              with over 25 years of
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              future where financial
+              experience in the securities
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              empowerment
+              market we have built a solid
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              transcends boundaries,
+              foundation of expertise and
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              where your journey
+              integrity, serving a diverse
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              towards prosperity is
+              clientele that includes High
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              guided by a team of
+              Net Worth Individuals (HNI)
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              very experienced
+              and Ultra High Net Worth
             </p>
             <p className="reveal-text text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight">
-              professionals.
+              Individuals (UHNI).
             </p>
 
             {/* CEO Info */}
@@ -75,12 +75,12 @@ const CEOWordSection = () => {
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-emerald-400">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80" 
-                  alt="Bhavesh Sanghvi CEO"
+                  alt="Chirag Jain CEO"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-white">Bhavesh Sanghvi</h3>
+                <h3 className="text-xl font-semibold text-white">Chirag Jain</h3>
                 <p className="text-emerald-400 font-medium">CEO</p>
               </div>
             </div>
