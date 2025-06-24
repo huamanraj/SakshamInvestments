@@ -20,17 +20,15 @@ import QuizPage from './pages/QuizPage';
 import AboutUsPage from './pages/AboutUsPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import ContactPage from './pages/ContactPage';
+import FactorInvestingPage from './pages/FactorInvestingPage';
+import MutualFundPage from './pages/MutualFundPage';
+import CareersPage from './pages/CareersPage';
 
 // Admin Pages
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminBlogs from './pages/AdminBlogs';
 import AdminCreateBlog from './pages/AdminCreateBlog';
-
-
-
-
-
 
 // Home Page Component
 const HomePage = () => {
@@ -59,6 +57,9 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/factor-investing" element={<FactorInvestingPage />} />
+            <Route path="/mutual-funds" element={<MutualFundPage />} />
+            <Route path="/careers" element={<CareersPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogDetailPage />} />
             <Route path="/quiz" element={<QuizPage />} />
