@@ -91,4 +91,14 @@
     font-size: 1rem;
     padding: 0.8rem 1.5rem;
   }
+}
+
+@media (max-width: 480px) {
+  .quiz-hero-title {
+    font-size: 2rem;
+  }
+  
+  .quiz-hero-subtitle {
+    font-size: 1.5rem;
+  }
 } 

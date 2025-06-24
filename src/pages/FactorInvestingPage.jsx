@@ -1,69 +1,142 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Layout from '../layouts/Layout';
 
 const FactorInvestingPage = () => {
+  const factorSelectionRef = useRef(null);
+  const riskBudgetRef = useRef(null);
+  const assetAllocationRef = useRef(null);
+
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-[#1e3e46] to-[#0c1c20]">
-        <div className="container mx-auto px-4 py-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-            Factor Investing
+      <div className="min-h-screen pt-10 bg-[#0c1c20] text-white">
+        {/* Hero Section with Navigation Buttons */}
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-12">
+            Factor <span className="text-[#40B8A6]">Investing</span>
           </h1>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            {/* Factor Cards */}
-            {[
-              {
-                title: "Value Factor",
-                description: "Investing in stocks that appear cheap relative to fundamentals",
-                icon: "📊"
-              },
-              {
-                title: "Momentum Factor",
-                description: "Capturing stocks with strong recent performance trends",
-                icon: "📈"
-              },
-              {
-                title: "Quality Factor",
-                description: "Focusing on companies with strong balance sheets and stable earnings",
-                icon: "⭐"
-              },
-              {
-                title: "Size Factor",
-                description: "Investing in smaller companies with growth potential",
-                icon: "📏"
-              },
-              {
-                title: "Low Volatility",
-                description: "Targeting stocks with lower price fluctuations",
-                icon: "🎯"
-              },
-              {
-                title: "Dividend Yield",
-                description: "Focusing on stocks with consistent dividend payments",
-                icon: "💰"
-              }
-            ].map((factor, index) => (
-              <div 
-                key={index}
-                className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10"
-              >
-                <div className="text-4xl mb-4">{factor.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-2">{factor.title}</h3>
-                <p className="text-gray-300">{factor.description}</p>
-              </div>
-            ))}
+          <div className="flex flex-wrap justify-center gap-4">
+            <button
+              onClick={() => scrollToSection(factorSelectionRef)}
+              className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all"
+            >
+              Factor Selection
+            </button>
+            <button
+              onClick={() => scrollToSection(riskBudgetRef)}
+              className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all"
+            >
+              Risk Budgets
+            </button>
+            <button
+              onClick={() => scrollToSection(assetAllocationRef)}
+              className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all"
+            >
+              Asset Allocation
+            </button>
           </div>
+        </div>
 
-          {/* Educational Section */}
-          <div className="mt-16 bg-white/5 backdrop-blur-lg rounded-xl p-8 border border-white/10">
-            <h2 className="text-3xl font-bold text-white mb-6">Why Factor Investing?</h2>
-            <div className="prose prose-lg prose-invert max-w-none">
-              <p className="text-gray-300">
-                Factor investing is an investment approach that targets specific drivers of return across asset classes.
-                This evidence-based approach combines the best of both active and passive investing, aiming to achieve
-                specific risk and return objectives while maintaining transparency and systematic implementation.
-              </p>
+        {/* Factor Selection Section */}
+        <div ref={factorSelectionRef} className="container mx-auto px-4 md:px-8 py-16">
+          <div className="w-full md:w-[70%] mx-auto bg-[#0c1c20]/80 rounded-[2rem] p-8 backdrop-blur-lg border border-white/10 shadow-2xl">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Factor <span className="text-[#40B8A6]">Selection</span>
+            </h2>
+           
+            
+            {/* Bento Grid Layout */}
+            <div className="w-full max-w-4xl mx-auto p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
+                {/* Size Card */}
+                <div className="bg-gradient-to-br from-sky-300 to-sky-500 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px]">
+                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Size</h3>
+                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
+                    Mid and Small Cap Companies
+                  </p>
+                </div>
+
+                {/* Low Volatility Card */}
+                <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px]">
+                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Low Volatility</h3>
+                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
+                    Companies exhibiting low standard deviation / risk
+                  </p>
+                </div>
+
+                {/* Quality Card */}
+                <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px] sm:col-span-2 lg:col-span-1">
+                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Quality</h3>
+                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
+                    Companies with low debt, high ROIC, consistent earnings
+                  </p>
+                </div>
+
+                {/* Momentum Card */}
+                <div className="bg-gradient-to-br from-pink-400 to-rose-500 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px]">
+                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Momentum</h3>
+                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
+                    Companies trading above 6 months & 1 year price adjusted for volatility
+                  </p>
+                </div>
+
+                {/* Value Card */}
+                <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px] sm:col-span-1 lg:col-span-2">
+                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Value</h3>
+                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
+                    Companies with low P/E, low P/B, low P/S and high dividend yield
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Risk Budget Section */}
+        <div ref={riskBudgetRef} className="container mx-auto px-4 md:px-8 py-16">
+          <div className="w-full md:w-[70%] mx-auto bg-[#0c1c20]/80 rounded-3xl p-8 backdrop-blur-lg border border-white/10">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+              Risk <span className="text-[#40B8A6]">Budget</span>
+            </h2>
+            <p className="text-xl mb-8">Optimize allocations for a given "risks budget"</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="aspect-square w-full">
+                <img
+                  src="https://growthfiniti.com/wp-content/uploads/2024/10/Group-1000002779.png"
+                  alt="Risk Budget Matrix"
+                  className="w-full h-full object-contain bg-white rounded-xl"
+                />
+              </div>
+              <div className="aspect-square w-full">
+                <img
+                  src="https://growthfiniti.com/wp-content/uploads/2024/10/Group-1000002780.png"
+                  alt="Risk Budget Sliders"
+                  className="w-full h-full bg-white object-contain rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Asset Allocation Section */}
+        <div ref={assetAllocationRef} className="container mx-auto px-4 md:px-8 py-16">
+          <div className="w-full md:w-[70%] mx-auto bg-[#0c1c20]/80 rounded-3xl p-8 backdrop-blur-lg border border-white/10">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
+              Asset <span className="text-[#40B8A6]">Allocation</span>
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Utilize long-term historical data, projected forecasts, & specified constraints</h3>
+                <p className="text-xl mb-4">Optimize the weights to each factor accordingly</p>
+              </div>
+              <img 
+                src="https://growthfiniti.com/wp-content/uploads/2024/08/asset-graph.png"
+                alt="Asset Allocation Graph"
+                className="w-full rounded-xl"
+              />
             </div>
           </div>
         </div>

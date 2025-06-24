@@ -1,106 +1,199 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Layout from '../layouts/Layout';
+import emailjs from '@emailjs/browser';
+import { toast } from 'react-hot-toast';
 
 const CareersPage = () => {
-  const openPositions = [
-    {
-      title: "Investment Analyst",
-      department: "Research",
-      location: "Mumbai",
-      type: "Full-time",
-      experience: "2-5 years"
-    },
-    {
-      title: "Portfolio Manager",
-      department: "Fund Management",
-      location: "Delhi",
-      type: "Full-time",
-      experience: "5-8 years"
-    },
-    {
-      title: "Risk Analyst",
-      department: "Risk Management",
-      location: "Bangalore",
-      type: "Full-time",
-      experience: "3-6 years"
+  const benefitsRef = useRef(null);
+  const applyRef = useRef(null);
+  const formRef = useRef();
+  const [loading, setLoading] = useState(false);
+
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // Ensure you have a .env file at the root of your project
+    // with the following variables:
+    // VITE_EMAILJS_SERVICE_ID=your_service_id
+    // VITE_EMAILJS_TEMPLATE_ID=your_template_id
+    // VITE_EMAILJS_PUBLIC_KEY=your_public_key
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      toast.error('EmailJS credentials are not configured in .env file.');
+      setLoading(false);
+      return;
     }
-  ];
+
+    try {
+      const result = await emailjs.sendForm(
+        serviceId,
+        templateId,
+        formRef.current,
+        publicKey
+      );
+
+      if (result.text === 'OK') {
+        toast.success('Application sent successfully!');
+        formRef.current.reset();
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast.error('Failed to send application. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-[#1e3e46] to-[#0c1c20]">
-        <div className="container mx-auto px-4 py-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-            Join Our Team
+      <div className="min-h-screen pt-10 bg-[#0c1c20] text-white">
+        {/* Hero Section */}
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            Careers <span className="text-[#40B8A6]">With Us</span>
           </h1>
-
-          {/* Why Join Us Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {[
-              {
-                title: "Innovation",
-                description: "Be part of a team that's revolutionizing investment management",
-                icon: "💡"
-              },
-              {
-                title: "Growth",
-                description: "Continuous learning and development opportunities",
-                icon: "📈"
-              },
-              {
-                title: "Culture",
-                description: "Collaborative environment focused on excellence",
-                icon: "🤝"
-              }
-            ].map((benefit, index) => (
-              <div 
-                key={index}
-                className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10"
-              >
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-2">{benefit.title}</h3>
-                <p className="text-gray-300">{benefit.description}</p>
-              </div>
-            ))}
+          <p className="max-w-2xl mx-auto text-gray-300 text-lg md:text-xl mb-10">
+            Build a rewarding career packed with purpose, stability and opportunities for growth. Join our budding Saksham Investments family today.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <button
+              onClick={() => scrollToSection(benefitsRef)}
+              className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all"
+            >
+              Benefits
+            </button>
+            <button
+              onClick={() => scrollToSection(applyRef)}
+              className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all"
+            >
+              Apply Now
+            </button>
           </div>
+        </div>
 
-          {/* Open Positions */}
-          <div className="mt-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Open Positions</h2>
-            <div className="grid grid-cols-1 gap-6">
-              {openPositions.map((position, index) => (
-                <div 
-                  key={index}
-                  className="bg-white/5 backdrop-blur-lg rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10"
-                >
-                  <div className="flex flex-col md:flex-row md:items-center justify-between">
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-2">{position.title}</h3>
-                      <div className="flex flex-wrap gap-4 text-sm">
-                        <span className="text-emerald-400">{position.department}</span>
-                        <span className="text-gray-300">• {position.location}</span>
-                        <span className="text-gray-300">• {position.type}</span>
-                        <span className="text-gray-300">• {position.experience}</span>
-                      </div>
-                    </div>
-                    <button className="mt-4 md:mt-0 px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full transition-colors duration-200">
-                      Apply Now
-                    </button>
-                  </div>
-                </div>
-              ))}
+        {/* Benefits Section */}
+        <div ref={benefitsRef} className="container mx-auto px-4 md:px-8 py-16">
+          <div className="w-full md:w-[70%] mx-auto bg-[#0c1c20]/80 rounded-[2rem] p-8 backdrop-blur-lg border border-white/10 shadow-2xl">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
+              Benefits of being a part of <span className="text-[#40B8A6]">Saksham Investments</span>
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
+              {/* Growth */}
+              <div className="bg-gradient-to-br from-sky-300 to-sky-500 rounded-2xl p-6 flex flex-col justify-between min-h-[140px]">
+                <h3 className="text-white font-bold text-lg mb-2">Growth</h3>
+                <p className="text-white text-sm font-medium leading-relaxed">Scale high and scale faster</p>
+              </div>
+              {/* Goals */}
+              <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-6 flex flex-col justify-between min-h-[140px]">
+                <h3 className="text-white font-bold text-lg mb-2">Goals</h3>
+                <p className="text-white text-sm font-medium leading-relaxed">Achieve your goals and aspirations</p>
+              </div>
+              {/* Rewards */}
+              <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-6 flex flex-col justify-between min-h-[140px]">
+                <h3 className="text-white font-bold text-lg mb-2">Rewards</h3>
+                <p className="text-white text-sm font-medium leading-relaxed">Enjoy all the perks and benefits</p>
+              </div>
             </div>
           </div>
+        </div>
+        
+        {/* Apply / Contact Section */}
+        <div ref={applyRef} className="container mx-auto px-4 md:px-8 py-16">
+          <div className="w-full md:w-[70%] mx-auto bg-[#0c1c20]/80 rounded-[2rem] p-8 backdrop-blur-lg border border-white/10 shadow-2xl">
+            <div className="text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Apply For a Position</h2>
+              <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+                We can't wait to hear from you! Please fill out the form below to apply.
+              </p>
+            </div>
 
-          {/* Contact Section */}
-          <div className="mt-16 bg-white/5 backdrop-blur-lg rounded-xl p-8 border border-white/10 text-center">
-            <h2 className="text-2xl font-bold text-white mb-4">Don't see a suitable position?</h2>
-            <p className="text-gray-300 mb-6">
-              We're always looking for talented individuals. Send your resume to{' '}
-              <a href="mailto:careers@growthfiniti.com" className="text-emerald-400 hover:text-emerald-300">
-                careers@growthfiniti.com
-              </a>
-            </p>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="resume" className="block text-sm font-medium text-gray-300 mb-2">
+                  Upload Your Resume
+                </label>
+                <input
+                  type="file"
+                  name="resume"
+                  id="resume"
+                  required
+                  className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#40B8A6]/20 file:text-[#40B8A6] hover:file:bg-[#40B8A6]/30"
+                />
+              </div>
+
+              <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                    Cover Letter / Message
+                  </label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    rows="4"
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200 resize-none"
+                    placeholder="Tell us why you're a great fit..."
+                  ></textarea>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`w-full bg-[#40B8A6]/80 hover:bg-[#40B8A6] text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center ${
+                    loading ? 'opacity-75 cursor-not-allowed' : ''
+                  }`}
+                >
+                  {loading ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    'Submit Application'
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
