@@ -17,13 +17,13 @@ const GrowthfinitiLogo = () => {
   return (
     <a
       href="/"
-      className="relative z-20 mr-4 flex items-center px-2 py-1"
+      className="relative z-20 mr-4 flex items-center  "
     >
       {/* Logo Image */}
       <img
         src="/logo.png"
         alt="Growthfiniti Logo"
-        className="h-10 w-auto"
+        className="h-14 w-auto"
       />
     </a>
   );
