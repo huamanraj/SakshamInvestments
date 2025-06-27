@@ -49,46 +49,86 @@ const FactorInvestingPage = () => {
            
             
             {/* Bento Grid Layout */}
-            <div className="w-full max-w-4xl mx-auto p-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
-                {/* Size Card */}
-                <div className="bg-gradient-to-br from-sky-300 to-sky-500 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px]">
-                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Size</h3>
-                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
-                    Mid and Small Cap Companies
-                  </p>
+            <div className="w-full max-w-6xl mx-auto p-4">
+              <div className="grid grid-cols-12 gap-4 auto-rows-[200px]">
+                {/* Size Card - Large */}
+                <div 
+                  className="col-span-12 sm:col-span-6 lg:col-span-5 rounded-2xl p-6 flex flex-col justify-between bg-cover bg-center bg-no-repeat relative overflow-hidden"
+                  style={{
+                    backgroundImage: `url('https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg1.png')`
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-white font-bold text-xl mb-3">Size</h3>
+                    <p className="text-white text-base font-medium leading-relaxed">
+                      Mid and Small Cap Companies
+                    </p>
+                  </div>
                 </div>
 
-                {/* Low Volatility Card */}
-                <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px]">
-                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Low Volatility</h3>
-                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
-                    Companies exhibiting low standard deviation / risk
-                  </p>
+                {/* Low Volatility Card - Medium */}
+                <div 
+                  className="col-span-12 sm:col-span-6 lg:col-span-4 rounded-2xl p-6 flex flex-col justify-between bg-cover bg-center bg-no-repeat relative overflow-hidden"
+                  style={{
+                    backgroundImage: `url('https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg2.png')`
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-white font-bold text-xl mb-3">Low Volatility</h3>
+                    <p className="text-white text-base font-medium leading-relaxed">
+                      Companies exhibiting low standard deviation / risk
+                    </p>
+                  </div>
                 </div>
 
-                {/* Quality Card */}
-                <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px] sm:col-span-2 lg:col-span-1">
-                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Quality</h3>
-                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
-                    Companies with low debt, high ROIC, consistent earnings
-                  </p>
+                {/* Quality Card - Medium */}
+                <div 
+                  className="col-span-12 sm:col-span-6 lg:col-span-3 rounded-2xl p-6 flex flex-col justify-between bg-cover bg-center bg-no-repeat relative overflow-hidden"
+                  style={{
+                    backgroundImage: `url('https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg3.png')`
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-white font-bold text-xl mb-3">Quality</h3>
+                    <p className="text-white text-base font-medium leading-relaxed">
+                      Companies with low debt, high ROIC, consistent earnings
+                    </p>
+                  </div>
                 </div>
 
-                {/* Momentum Card */}
-                <div className="bg-gradient-to-br from-pink-400 to-rose-500 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px]">
-                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Momentum</h3>
-                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
-                    Companies trading above 6 months & 1 year price adjusted for volatility
-                  </p>
+                {/* Momentum Card - Large */}
+                <div 
+                  className="col-span-12 sm:col-span-6 lg:col-span-7 rounded-2xl p-6 flex flex-col justify-between bg-cover bg-center bg-no-repeat relative overflow-hidden"
+                  style={{
+                    backgroundImage: `url('https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg4.png')`
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-white font-bold text-xl mb-3">Momentum</h3>
+                    <p className="text-white text-base font-medium leading-relaxed">
+                      Companies trading above 6 months & 1 year price adjusted for volatility
+                    </p>
+                  </div>
                 </div>
 
-                {/* Value Card */}
-                <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-4 sm:p-6 flex flex-col justify-between min-h-[120px] sm:min-h-[140px] sm:col-span-1 lg:col-span-2">
-                  <h3 className="text-white font-bold text-base sm:text-lg mb-2">Value</h3>
-                  <p className="text-white text-sm sm:text-base font-medium leading-relaxed">
-                    Companies with low P/E, low P/B, low P/S and high dividend yield
-                  </p>
+                {/* Value Card - Medium */}
+                <div 
+                  className="col-span-12 sm:col-span-6 lg:col-span-5 rounded-2xl p-6 flex flex-col justify-between bg-cover bg-center bg-no-repeat relative overflow-hidden"
+                  style={{
+                    backgroundImage: `url('https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg1.png')`
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/30 rounded-2xl"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-white font-bold text-xl mb-3">Value</h3>
+                    <p className="text-white text-base font-medium leading-relaxed">
+                      Companies with low P/E, low P/B, low P/S and high dividend yield
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

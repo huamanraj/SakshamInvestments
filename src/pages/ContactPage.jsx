@@ -56,13 +56,13 @@ const ContactPage = () => {
 
         {/* Contact Form and Info Section */}
         <div className="container mx-auto px-4 md:px-8 pb-16">
-          <div className="w-full lg:w-[80%] mx-auto bg-[#0c1c20]/80 rounded-[2rem] p-8 md:p-12 backdrop-blur-lg border border-white/10 shadow-2xl">
+          <div className="w-full lg:w-[80%] mx-auto bg-white rounded-[2rem] p-8 md:p-12 backdrop-blur-lg border border-gray-200 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Form */}
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name
                     </label>
                     <input
@@ -70,12 +70,12 @@ const ContactPage = () => {
                       name="name"
                       id="name"
                       required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200 text-gray-900"
                       placeholder="John Doe"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address
                     </label>
                     <input
@@ -83,14 +83,14 @@ const ContactPage = () => {
                       name="email"
                       id="email"
                       required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200 text-gray-900"
                       placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                     Subject
                   </label>
                   <input
@@ -98,13 +98,13 @@ const ContactPage = () => {
                     name="subject"
                     id="subject"
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200 text-gray-900"
                     placeholder="How can we help you?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     Message
                   </label>
                   <textarea
@@ -112,7 +112,7 @@ const ContactPage = () => {
                     id="message"
                     required
                     rows="5"
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200 resize-none"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-[#40B8A6] focus:border-[#40B8A6] transition-colors duration-200 resize-none text-gray-900"
                     placeholder="Write your message here..."
                   ></textarea>
                 </div>
@@ -149,8 +149,8 @@ const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Phone</h3>
-                    <p className="text-gray-300">+1 (555) 123-4567</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Phone</h3>
+                    <p className="text-gray-600">+1 (555) 123-4567</p>
                   </div>
                 </div>
 
@@ -161,8 +161,8 @@ const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Email</h3>
-                    <p className="text-gray-300">info@example.com</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Email</h3>
+                    <p className="text-gray-600">info@example.com</p>
                   </div>
                 </div>
 
@@ -174,8 +174,8 @@ const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Location</h3>
-                    <p className="text-gray-300">123 Business Street<br />New York, NY 10001</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Location</h3>
+                    <p className="text-gray-600">123 Business Street<br />New York, NY 10001</p>
                   </div>
                 </div>
               </div>

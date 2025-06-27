@@ -14,26 +14,31 @@ const LeadershipPortfolios = () => {
       title: "What Are Leadership Portfolios?",
       content: "Financial market history has taught us that great leaders create consistent compounding. Leaders create moats, consistency & deliver shareholder value. That's what we seek from our competent fund managers. We curate portfolios that compound over time. This requires a systematic and a disciplined approach over long periods of time.",
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgImage: "https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg1.png"
     },
     {
       title: "Reflects Thought Leadership",
       content: "Our asset is a sound management that reflects thought leadership. Our goal is to use these assets to build yours. Over the years, we have built a relationship with our clients that purely reflects trust and credibility. This has helped us seal a strong position as a trusted service provider of wealth solutions amongst all stakeholders and clients.",
       image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgImage: "https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg2.png"
     },
     {
       title: "Our Knowledge",
       content: "When it comes to investing, knowledge & experience is a necessity. At every step, we aim to empower our customers with the required knowledge to help them make better decisions.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgImage: "https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg3.png"
     },
     {
       title: "Strategic Vision",
       content: "Our strategic vision encompasses long-term wealth creation through disciplined investment strategies. We believe in creating value that transcends market cycles and delivers sustainable growth for our clients.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+      bgImage: "https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg4.png"
     },
     {
       title: "Client Excellence",
       content: "Excellence in client service is at the heart of everything we do. We provide personalized investment solutions that align with our clients' goals and risk tolerance, ensuring optimal outcomes.",
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgImage: "https://growthfiniti.com/wp-content/uploads/2024/08/approach-bg1.png" // Repeating first image for 5th item
     }
   ];
 
@@ -81,7 +86,12 @@ const LeadershipPortfolios = () => {
               <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8">
                 {/* Card Container */}
                 <div className="w-full lg:w-1/2">
-                  <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-[2rem] p-4 overflow-hidden">
+                  <div 
+                    className="rounded-[2rem] p-8 overflow-hidden bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: `url(${portfolio.bgImage})`
+                    }}
+                  >
                     <div className="rounded-2xl overflow-hidden">
                       <img
                         src={portfolio.image}
