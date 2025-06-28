@@ -252,6 +252,26 @@
 
 .file-upload-label svg {
   color: #6b7280;
+  transition: transform 0.3s ease;
+}
+
+.file-upload-label.uploading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: #f3f4f6;
+}
+
+.file-upload-label.uploading svg {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @media (max-width: 768px) {

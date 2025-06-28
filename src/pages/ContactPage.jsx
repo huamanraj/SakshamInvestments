@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { toast } from 'react-hot-toast';
+import { databases, DATABASE_ID, CONTACTS_COLLECTION_ID } from '../lib/appwrite';
+import { ID } from 'appwrite';
 import Layout from '../layouts/Layout';
 
 const ContactPage = () => {
@@ -11,30 +12,27 @@ const ContactPage = () => {
     e.preventDefault();
     setLoading(true);
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      toast.error('EmailJS credentials are not configured in .env file.');
-      setLoading(false);
-      return;
-    }
-
     try {
-      const result = await emailjs.sendForm(
-        serviceId,
-        templateId,
-        formRef.current,
-        publicKey
+      const formData = new FormData(formRef.current);
+      const contactData = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+        createdAt: new Date().toISOString()
+      };
+
+      await databases.createDocument(
+        DATABASE_ID,
+        CONTACTS_COLLECTION_ID,
+        ID.unique(),
+        contactData
       );
 
-      if (result.text === 'OK') {
-        toast.success('Message sent successfully!');
-        formRef.current.reset();
-      }
+      toast.success('Message sent successfully! We will get back to you soon.');
+      formRef.current.reset();
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error saving contact:', error);
       toast.error('Failed to send message. Please try again.');
     } finally {
       setLoading(false);

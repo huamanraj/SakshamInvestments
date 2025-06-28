@@ -9,7 +9,9 @@ import {
   User,
   Menu,
   X,
-  ChevronLeft
+  ChevronLeft,
+  Mail,
+  ClipboardList
 } from 'lucide-react';
 
 const AdminLayout = ({ children }) => {
@@ -59,6 +61,18 @@ const AdminLayout = ({ children }) => {
       href: '/admin/blogs/create',
       icon: PlusCircle,
       current: location.pathname === '/admin/blogs/create' || location.pathname.includes('/admin/blogs/edit/')
+    },
+    {
+      name: 'Contacts',
+      href: '/admin/contacts',
+      icon: Mail,
+      current: location.pathname === '/admin/contacts'
+    },
+    {
+      name: 'Quiz Data',
+      href: '/admin/quiz-data',
+      icon: ClipboardList,
+      current: location.pathname === '/admin/quiz-data'
     }
   ];
 

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { ID } from 'appwrite';
+import { databases, storage, DATABASE_ID, QUIZ_COLLECTION_ID, STORAGE_BUCKET_ID } from '../lib/appwrite';
 import Layout from '../layouts/Layout';
 import './QuizPage.css';
 
@@ -12,6 +14,8 @@ const QuizPage = () => {
     phone: '',
     portfolio: null
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fileUploading, setFileUploading] = useState(false);
 
   const questions = [
     {
@@ -85,20 +89,122 @@ const QuizPage = () => {
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    toast.success('Form submitted successfully!');
-    // Here you would typically send the data to your backend
-    console.log('Quiz Answers:', answers);
-    console.log('Form Data:', formData);
+  const validateFile = (file) => {
+    // Check file size (5MB limit)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      toast.error('File size must be less than 5MB');
+      return false;
+    }
+
+    // Check file type
+    const allowedTypes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'text/csv',
+      'image/png',
+      'image/jpeg',
+      'image/jpg',
+      'image/gif',
+      'image/webp'
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('Please upload only PDF, DOC, DOCX, XLS, XLSX, CSV, or image files');
+      return false;
+    }
+
+    return true;
   };
 
-  const handleFileUpload = (e) => {
+  const handleFileUpload = async (e) => {
     const file = e.target.files[0];
-    setFormData(prev => ({
-      ...prev,
-      portfolio: file
-    }));
+    if (!file) return;
+
+    if (!validateFile(file)) {
+      e.target.value = ''; // Reset file input
+      return;
+    }
+
+    setFileUploading(true);
+    try {
+      const response = await storage.createFile(
+        STORAGE_BUCKET_ID,
+        ID.unique(),
+        file
+      );
+      
+      setFormData(prev => ({
+        ...prev,
+        portfolio: {
+          file: file,
+          fileId: response.$id,
+          fileName: file.name
+        }
+      }));
+      
+      toast.success('File uploaded successfully');
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      toast.error('Failed to upload file');
+      e.target.value = ''; // Reset file input
+    } finally {
+      setFileUploading(false);
+    }
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Prepare quiz data
+      const quizData = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        answers: JSON.stringify(answers),
+        portfolio_file_id: formData.portfolio?.fileId || null
+      };
+
+      // Save to database
+      await databases.createDocument(
+        DATABASE_ID,
+        QUIZ_COLLECTION_ID,
+        ID.unique(),
+        quizData
+      );
+
+      toast.success('Quiz submitted successfully! We will contact you soon.');
+      
+      // Reset form
+      setAnswers({});
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        portfolio: null
+      });
+      setCurrentStep(1);
+      
+      // Reset file input
+      const fileInput = document.getElementById('portfolio');
+      if (fileInput) {
+        fileInput.value = '';
+      }
+      
+    } catch (error) {
+      console.error('Error submitting quiz:', error);
+      toast.error('Failed to submit quiz. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const isCurrentStepAnswered = () => {
@@ -188,6 +294,7 @@ const QuizPage = () => {
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
               required
+              disabled={isSubmitting}
             />
           </div>
           
@@ -199,6 +306,7 @@ const QuizPage = () => {
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
               required
+              disabled={isSubmitting}
             />
           </div>
           
@@ -210,21 +318,30 @@ const QuizPage = () => {
               value={formData.phone}
               onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
               required
+              disabled={isSubmitting}
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="portfolio">Upload your current portfolio</label>
+            <label htmlFor="portfolio">Upload your current portfolio (Optional)</label>
             <div className="file-upload-wrapper">
               <input
                 type="file"
                 id="portfolio"
                 onChange={handleFileUpload}
-                accept=".pdf,.doc,.docx,.xls,.xlsx"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg,.gif,.webp"
                 style={{ display: 'none' }}
+                disabled={fileUploading || isSubmitting}
               />
-              <label htmlFor="portfolio" className="file-upload-label">
-                <span>{formData.portfolio ? formData.portfolio.name : 'Select file to upload'}</span>
+              <label htmlFor="portfolio" className={`file-upload-label ${fileUploading ? 'uploading' : ''}`}>
+                <span>
+                  {fileUploading 
+                    ? 'Uploading...' 
+                    : formData.portfolio 
+                      ? formData.portfolio.fileName 
+                      : 'Select file to upload (Max 5MB)'
+                  }
+                </span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   <polyline points="7,10 12,15 17,10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -232,21 +349,26 @@ const QuizPage = () => {
                 </svg>
               </label>
             </div>
+            <p className="text-xs text-gray-500 mt-1">
+              Supported formats: PDF, DOC, DOCX, XLS, XLSX, CSV, PNG, JPG, GIF, WEBP
+            </p>
           </div>
           
           <div className="quiz-navigation">
             <button
               type="button"
               onClick={handlePrevious}
+              disabled={isSubmitting}
               className="quiz-btn quiz-btn-secondary"
             >
               Previous
             </button>
             <button
               type="submit"
+              disabled={isSubmitting || fileUploading}
               className="quiz-btn quiz-btn-primary"
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </form>

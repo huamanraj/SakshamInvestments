@@ -29,6 +29,8 @@ import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminBlogs from './pages/AdminBlogs';
 import AdminCreateBlog from './pages/AdminCreateBlog';
+import AdminContacts from './pages/AdminContacts';
+import AdminQuizData from './pages/AdminQuizData';
 
 // Home Page Component
 const HomePage = () => {
@@ -98,6 +100,22 @@ function App() {
               <ProtectedRoute>
                 <AdminLayout>
                   <AdminCreateBlog />
+                </AdminLayout>
+              </ProtectedRoute>
+            } />
+
+            <Route path="/admin/contacts" element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AdminContacts />
+                </AdminLayout>
+              </ProtectedRoute>
+            } />
+
+            <Route path="/admin/quiz-data" element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AdminQuizData />
                 </AdminLayout>
               </ProtectedRoute>
             } />
