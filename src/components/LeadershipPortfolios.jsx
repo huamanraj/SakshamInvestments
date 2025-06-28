@@ -108,7 +108,7 @@ const LeadershipPortfolios = () => {
                   <h3 className="text-4xl font-bold text-white">
                     {portfolio.title}
                   </h3>
-                  <p className="text-gray-400 text-lg">
+                  <p className="text-gray-400 text-xl">
                     {portfolio.content}
                   </p>
                 </div>
