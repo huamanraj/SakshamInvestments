@@ -160,6 +160,35 @@ const QuizPage = () => {
     e.preventDefault();
     
     if (isSubmitting) return;
+
+    // Validate required fields
+    const errors = [];
+    
+    if (!formData.name.trim()) {
+      errors.push('Name is required');
+    }
+    
+    if (!formData.email.trim()) {
+      errors.push('Email is required');
+    }
+    
+    if (!formData.phone.trim()) {
+      errors.push('Phone number is required');
+    }
+    
+    // Check if all quiz questions are answered
+    const totalQuestions = questions.length;
+    const answeredQuestions = Object.keys(answers).length;
+    
+    if (answeredQuestions < totalQuestions) {
+      errors.push(`Please answer all ${totalQuestions} quiz questions`);
+    }
+    
+    // Show validation errors
+    if (errors.length > 0) {
+      errors.forEach(error => toast.error(error));
+      return;
+    }
     
     setIsSubmitting(true);
     
@@ -212,6 +241,15 @@ const QuizPage = () => {
       return answers[currentStep] !== undefined;
     }
     return true;
+  };
+
+  const isFormValid = () => {
+    const hasName = formData.name.trim().length > 0;
+    const hasEmail = formData.email.trim().length > 0;
+    const hasPhone = formData.phone.trim().length > 0;
+    const allQuestionsAnswered = Object.keys(answers).length === questions.length;
+    
+    return hasName && hasEmail && hasPhone && allQuestionsAnswered;
   };
 
   const renderProgressSteps = () => {
@@ -287,7 +325,7 @@ const QuizPage = () => {
         
         <form onSubmit={handleFormSubmit} className="quiz-form">
           <div className="form-group">
-            <label htmlFor="name">What's your name?</label>
+            <label htmlFor="name">What's your name? <span className="text-red-500">*</span></label>
             <input
               type="text"
               id="name"
@@ -295,11 +333,12 @@ const QuizPage = () => {
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
               required
               disabled={isSubmitting}
+              className={`${!formData.name.trim() && formData.name.length > 0 ? 'border-red-300' : ''}`}
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="email">What's your email?</label>
+            <label htmlFor="email">What's your email? <span className="text-red-500">*</span></label>
             <input
               type="email"
               id="email"
@@ -307,11 +346,12 @@ const QuizPage = () => {
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
               required
               disabled={isSubmitting}
+              className={`${!formData.email.trim() && formData.email.length > 0 ? 'border-red-300' : ''}`}
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="phone">What's your phone number</label>
+            <label htmlFor="phone">What's your phone number? <span className="text-red-500">*</span></label>
             <input
               type="tel"
               id="phone"
@@ -319,6 +359,7 @@ const QuizPage = () => {
               onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
               required
               disabled={isSubmitting}
+              className={`${!formData.phone.trim() && formData.phone.length > 0 ? 'border-red-300' : ''}`}
             />
           </div>
           
@@ -353,6 +394,21 @@ const QuizPage = () => {
               Supported formats: PDF, DOC, DOCX, XLS, XLSX, CSV, PNG, JPG, GIF, WEBP
             </p>
           </div>
+
+          {/* Validation Summary */}
+          {!isFormValid() && (
+            <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+              <p className="text-amber-800 text-sm font-medium mb-2">Please complete the following:</p>
+              <ul className="text-amber-700 text-xs space-y-1">
+                {!formData.name.trim() && <li>• Enter your name</li>}
+                {!formData.email.trim() && <li>• Enter your email address</li>}
+                {!formData.phone.trim() && <li>• Enter your phone number</li>}
+                {Object.keys(answers).length < questions.length && (
+                  <li>• Answer all {questions.length} quiz questions ({Object.keys(answers).length}/{questions.length} completed)</li>
+                )}
+              </ul>
+            </div>
+          )}
           
           <div className="quiz-navigation">
             <button
@@ -365,7 +421,7 @@ const QuizPage = () => {
             </button>
             <button
               type="submit"
-              disabled={isSubmitting || fileUploading}
+              disabled={isSubmitting || fileUploading || !isFormValid()}
               className="quiz-btn quiz-btn-primary"
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
