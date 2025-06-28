@@ -1,8 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
 import { BlogProvider } from './contexts/BlogContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import LoadingScreen from './components/LoadingScreen';
 import Layout from './layouts/Layout';
 import AdminLayout from './layouts/AdminLayout';
 import HeroSection from './components/HeroSection';
@@ -50,8 +52,23 @@ const HomePage = () => {
 };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate app initialization time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800); // 2.8 seconds loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Show loading screen while app is initializing
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    
     <AuthProvider>
       <BlogProvider>
         <div className="App">

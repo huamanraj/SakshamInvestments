@@ -136,6 +136,31 @@ const ContactPage = () => {
                     )}
                   </button>
                 </div>
+
+                {/* Or divider */}
+                <div className="flex items-center justify-center">
+                  <div className="border-t border-gray-300 flex-grow"></div>
+                  <span className="mx-4 text-gray-500 text-sm">OR</span>
+                  <div className="border-t border-gray-300 flex-grow"></div>
+                </div>
+
+                {/* Google Form Button */}
+                <div>
+                  <a
+                    href="https://forms.gle/7kcMG9wWtEngh4gi9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-white border-2 border-[#40B8A6] text-[#40B8A6] hover:bg-[#40B8A6] hover:text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center group"
+                  >
+                    <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22,11V3H14L11,6H3A2,2 0 0,0 1,8V18A2,2 0 0,0 3,20H21A2,2 0 0,0 23,18V13H22V11M22,7V9H16V7H22M8,12H16V14H8V12M8,16H13V18H8V16Z"/>
+                    </svg>
+                                         Schedule Investment Consultation
+                    <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
               </form>
 
               {/* Contact Information */}
