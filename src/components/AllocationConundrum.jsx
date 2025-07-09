@@ -71,6 +71,31 @@ const AllocationConundrum = () => {
     }
   };
 
+  // Define bank icons and their animation settings
+  const bankIcons = ['axis.svg', 'canara.svg', 'hdfc.svg', 'icici.svg', 'kotak.svg', 'mosl.svg', 'quant.svg'];
+  // Generate random vertical and evenly spaced horizontal positions for each bank icon
+  const [iconData] = React.useState(() => bankIcons.map((_, idx) => {
+    const segments = bankIcons.length + 1;
+    const left = ((idx + 1) * (100 / segments)).toFixed(2);
+    const rawTop = idx < 2 ? Math.random() * 15 : Math.random() * 70 + 15; // first two at top region
+    const top = rawTop.toFixed(2);
+    const amplitudeX = Math.random() * 60 - 30;
+    const amplitudeY = Math.random() * 60 - 30;
+    const rotationDuration = Math.random() * 20 + 10;
+    const moveDuration = Math.random() * 10 + 5;
+    const scaleDuration = Math.random() * 3 + 2;
+    return {
+      top: `${top}%`,
+      left: `${left}%`,
+      amplitudeX,
+      amplitudeY,
+      rotationDuration,
+      moveDuration,
+      scaleDuration
+    };
+  }));
+  const iconSize = 'w-24 h-24';
+
   return (
     <section 
       ref={ref}
@@ -79,119 +104,30 @@ const AllocationConundrum = () => {
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Floating Icons */}
-        <motion.div
-          animate={{ 
-            rotate: 360,
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="absolute top-20 left-20 opacity-10"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-16 h-16" />
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            rotate: -360,
-            y: [0, -20, 0]
-          }}
-          transition={{ 
-            rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-            y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="absolute top-40 right-32 opacity-10"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-20 h-20" />
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            rotate: 360,
-            x: [0, 30, 0]
-          }}
-          transition={{ 
-            rotate: { duration: 30, repeat: Infinity, ease: "linear" },
-            x: { duration: 5, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="absolute bottom-20 left-32 opacity-10"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-14 h-14" />
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            rotate: -360,
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ 
-            rotate: { duration: 18, repeat: Infinity, ease: "linear" },
-            scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="absolute bottom-32 right-20 opacity-10"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-18 h-18" />
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            rotate: [0, 180, 360],
-            opacity: [0.1, 0.3, 0.1]
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity, 
-            ease: "linear" 
-          }}
-          className="absolute top-60 left-1/4"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-12 h-12" />
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            rotate: [360, 180, 0],
-            opacity: [0.1, 0.2, 0.1]
-          }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity, 
-            ease: "linear" 
-          }}
-          className="absolute bottom-40 right-1/3"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-10 h-10" />
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            rotate: 360,
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            rotate: { duration: 22, repeat: Infinity, ease: "linear" },
-            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="absolute top-1/2 left-10 opacity-10"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-16 h-16" />
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            rotate: -360,
-            y: [0, 25, 0]
-          }}
-          transition={{ 
-            rotate: { duration: 28, repeat: Infinity, ease: "linear" },
-            y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="absolute top-1/2 right-10 opacity-10"
-        >
-          <img src="/growthfiniti.com.svg" alt="" className="w-18 h-18" />
-        </motion.div>
+        {bankIcons.map((icon, idx) => {
+          const { top, left, amplitudeX, amplitudeY, rotationDuration, moveDuration, scaleDuration } = iconData[idx];
+          return (
+            <motion.div
+              key={icon}
+              style={{ top, left }}
+              className="absolute opacity-10"
+              animate={{
+                rotate: [0, 360],
+                x: [0, amplitudeX, -amplitudeX, 0],
+                y: [0, amplitudeY, -amplitudeY, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                rotate: { duration: rotationDuration, repeat: Infinity, ease: "linear" },
+                x: { duration: moveDuration, repeat: Infinity, ease: "easeInOut" },
+                y: { duration: moveDuration, repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: scaleDuration, repeat: Infinity, ease: "easeInOut" }
+              }}
+            >
+              <img src={`banks/${icon}`} alt="" className={iconSize} />
+            </motion.div>
+          );
+        })}
       </div>
 
       <div className="container mx-auto px-4 text-center relative z-10">
@@ -242,7 +178,7 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="/growthfiniti.com.svg" alt="" className="w-24 h-24" />
+                <img src="banks/axis.svg" alt="" className="w-24 h-24" />
               </motion.div>
             </motion.div>
 
@@ -274,7 +210,7 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="/growthfiniti.com.svg" alt="" className="w-24 h-24" />
+                <img src="banks/axis.svg" alt="" className="w-24 h-24" />
               </motion.div>
             </motion.div>
 
@@ -306,7 +242,7 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="/growthfiniti.com.svg" alt="" className="w-24 h-24" />
+                <img src="banks/axis.svg" alt="" className="w-24 h-24" />
               </motion.div>
             </motion.div>
           </div>
