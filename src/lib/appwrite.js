@@ -18,5 +18,8 @@ export const COLLECTION_ID = import.meta.env.VITE_APPWRITE_COLLECTION_ID;
 export const CONTACTS_COLLECTION_ID = import.meta.env.VITE_APPWRITE_CONTACTS_COLLECTION_ID;
 export const QUIZ_COLLECTION_ID = import.meta.env.VITE_APPWRITE_QUIZ_COLLECTION_ID;
 export const STORAGE_BUCKET_ID = import.meta.env.VITE_APPWRITE_STORAGE_BUCKET_ID;
+// TODO: Consider moving this to an environment variable as well
+export const JOB_APPLICATIONS_COLLECTION_ID = 'job_applications_collection';
+
 
 export default client; 

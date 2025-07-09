@@ -1,7 +1,13 @@
 import React, { useRef, useState } from 'react';
 import Layout from '../layouts/Layout';
-import emailjs from '@emailjs/browser';
 import { toast } from 'react-hot-toast';
+import { databases, storage } from '../lib/appwrite';
+import { ID } from 'appwrite';
+import { 
+  DATABASE_ID, 
+  JOB_APPLICATIONS_COLLECTION_ID, 
+  STORAGE_BUCKET_ID 
+} from '../lib/appwrite';
 
 const CareersPage = () => {
   const benefitsRef = useRef(null);
@@ -17,36 +23,48 @@ const CareersPage = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Ensure you have a .env file at the root of your project
-    // with the following variables:
-    // VITE_EMAILJS_SERVICE_ID=your_service_id
-    // VITE_EMAILJS_TEMPLATE_ID=your_template_id
-    // VITE_EMAILJS_PUBLIC_KEY=your_public_key
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData.entries());
+    const resumeFile = data.resume;
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      toast.error('EmailJS credentials are not configured in .env file.');
+    if (!resumeFile || resumeFile.size === 0) {
+      toast.error('Please upload your resume.');
       setLoading(false);
       return;
     }
+    
+    if (!STORAGE_BUCKET_ID || !DATABASE_ID || !JOB_APPLICATIONS_COLLECTION_ID) {
+        toast.error('Appwrite is not configured correctly. Please contact support.');
+        setLoading(false);
+        return;
+    }
 
     try {
-      const result = await emailjs.sendForm(
-        serviceId,
-        templateId,
-        formRef.current,
-        publicKey
+      // 1. Upload resume to Appwrite Storage
+      const fileResponse = await storage.createFile(
+        STORAGE_BUCKET_ID,
+        ID.unique(),
+        resumeFile
+      );
+      const resumeFileId = fileResponse.$id;
+
+      // 2. Create document in Appwrite Database
+      await databases.createDocument(
+        DATABASE_ID,
+        JOB_APPLICATIONS_COLLECTION_ID,
+        ID.unique(),
+        {
+          name: data.name,
+          email: data.email,
+          coverLetter: data.message,
+          resumeFileId: resumeFileId
+        }
       );
 
-      if (result.text === 'OK') {
-        toast.success('Application sent successfully!');
-        formRef.current.reset();
-      }
+      toast.success('Application sent successfully!');
+      formRef.current.reset();
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error submitting application:', error);
       toast.error('Failed to send application. Please try again.');
     } finally {
       setLoading(false);

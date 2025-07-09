@@ -33,6 +33,7 @@ import AdminBlogs from './pages/AdminBlogs';
 import AdminCreateBlog from './pages/AdminCreateBlog';
 import AdminContacts from './pages/AdminContacts';
 import AdminQuizData from './pages/AdminQuizData';
+import AdminJobApplications from './pages/AdminJobApplications';
 
 // Home Page Component
 const HomePage = () => {
@@ -133,6 +134,14 @@ function App() {
               <ProtectedRoute>
                 <AdminLayout>
                   <AdminQuizData />
+                </AdminLayout>
+              </ProtectedRoute>
+            } />
+
+            <Route path="/admin/job-applications" element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AdminJobApplications />
                 </AdminLayout>
               </ProtectedRoute>
             } />

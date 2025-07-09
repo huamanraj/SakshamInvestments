@@ -71,30 +71,9 @@ const AllocationConundrum = () => {
     }
   };
 
-  // Define bank icons and their animation settings
+  // Define bank icons and responsive size class
   const bankIcons = ['axis.svg', 'canara.svg', 'hdfc.svg', 'icici.svg', 'kotak.svg', 'mosl.svg', 'quant.svg'];
-  // Generate random vertical and evenly spaced horizontal positions for each bank icon
-  const [iconData] = React.useState(() => bankIcons.map((_, idx) => {
-    const segments = bankIcons.length + 1;
-    const left = ((idx + 1) * (100 / segments)).toFixed(2);
-    const rawTop = idx < 2 ? Math.random() * 15 : Math.random() * 70 + 15; // first two at top region
-    const top = rawTop.toFixed(2);
-    const amplitudeX = Math.random() * 60 - 30;
-    const amplitudeY = Math.random() * 60 - 30;
-    const rotationDuration = Math.random() * 20 + 10;
-    const moveDuration = Math.random() * 10 + 5;
-    const scaleDuration = Math.random() * 3 + 2;
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      amplitudeX,
-      amplitudeY,
-      rotationDuration,
-      moveDuration,
-      scaleDuration
-    };
-  }));
-  const iconSize = 'w-24 h-24';
+  const iconSizeClass = 'w-12 h-12 md:w-24 md:h-24';
 
   return (
     <section 
@@ -102,32 +81,15 @@ const AllocationConundrum = () => {
       className="h-auto pt-20 bg-[#09252c] relative overflow-hidden flex items-center justify-center"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0">
-        {/* Floating Icons */}
-        {bankIcons.map((icon, idx) => {
-          const { top, left, amplitudeX, amplitudeY, rotationDuration, moveDuration, scaleDuration } = iconData[idx];
-          return (
-            <motion.div
+      <div className="absolute bottom-8 md:bottom-20 w-full px-4">
+        {/* Bank Logos */}
+        <div className="flex justify-between max-w-6xl mx-auto">
+          {bankIcons.map(icon => (
+            <img
               key={icon}
-              style={{ top, left }}
-              className="absolute opacity-10"
-              animate={{
-                rotate: [0, 360],
-                x: [0, amplitudeX, -amplitudeX, 0],
-                y: [0, amplitudeY, -amplitudeY, 0],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{
-                rotate: { duration: rotationDuration, repeat: Infinity, ease: "linear" },
-                x: { duration: moveDuration, repeat: Infinity, ease: "easeInOut" },
-                y: { duration: moveDuration, repeat: Infinity, ease: "easeInOut" },
-                scale: { duration: scaleDuration, repeat: Infinity, ease: "easeInOut" }
-              }}
-            >
-              <img src={`banks/${icon}`} alt="" className={iconSize} />
-            </motion.div>
-          );
-        })}
+              src={`banks/${icon}`} alt="" className={`${iconSizeClass} mb-20`} />
+          ))}
+        </div>
       </div>
 
       <div className="container mx-auto px-4 text-center relative z-10">

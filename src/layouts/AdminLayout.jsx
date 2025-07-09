@@ -11,7 +11,8 @@ import {
   X,
   ChevronLeft,
   Mail,
-  ClipboardList
+  ClipboardList,
+  Briefcase
 } from 'lucide-react';
 
 const AdminLayout = ({ children }) => {
@@ -73,6 +74,12 @@ const AdminLayout = ({ children }) => {
       href: '/admin/quiz-data',
       icon: ClipboardList,
       current: location.pathname === '/admin/quiz-data'
+    },
+    {
+      name: 'Job Applications',
+      href: '/admin/job-applications',
+      icon: Briefcase,
+      current: location.pathname === '/admin/job-applications'
     }
   ];
 
