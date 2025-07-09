@@ -134,9 +134,14 @@ const AboutUs = () => {
                   <div className="text-4xl font-bold text-emerald-400 mb-2">20+</div>
                   <div className="text-gray-300">Years of Expertise</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-emerald-400 mb-2">₹300Cr+</div>
-                  <div className="text-gray-300">Assets Under Management</div>
+                <div className="text-center relative flex flex-col items-center justify-center">
+                  {/* Highlighted ₹300Cr+ Stat */}
+                  <div className="relative flex items-center justify-center p-4 mb-2">
+                    <span className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-emerald-300 drop-shadow-lg z-10">₹300Cr+</span>
+                    <span className="absolute inset-0 rounded-full bg-emerald-400/20 blur-2xl scale-125 z-0"></span>
+                    <span className="absolute inset-0 rounded-full border-4 border-emerald-400/60 animate-pulse z-0"></span>
+                  </div>
+                  <div className="text-gray-300 z-10">Assets Under Management</div>
                 </div>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-emerald-400 mb-2">1000+</div>
@@ -151,6 +156,52 @@ const AboutUs = () => {
               </p>
               <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-600/10 rounded-full blur-3xl"></div>
+            </div>
+          </div>
+
+          {/* Team Section */}
+          <div className="max-w-7xl mx-auto mb-20">
+            <div className="text-center mb-16">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                Our <span className="text-emerald-400">Team</span>
+              </h2>
+              <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                Meet the Saksham Investments team that is here to help you make the best decisions for your investments and create a strong portfolio that reflects "leadership & consistency".
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+              {/* Chirag Jain */}
+              <div className="flex flex-col items-center">
+                <div className="bg-cyan-100 rounded-2xl overflow-hidden w-64 h-64">
+                  <img src="/team/chirag.jpg" alt="Chirag Jain" className="w-full h-full object-cover" />
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-white">Chirag Jain</h3>
+                <p className="mt-1 text-gray-300">CEO</p>
+              </div>
+              {/* Monika Jain */}
+              <div className="flex flex-col items-center">
+                <div className="bg-cyan-100 rounded-2xl overflow-hidden w-64 h-64">
+                  <img src="/team/39088 Chirag Jain.jpg" alt="Monika Jain" className="w-full h-full object-cover" />
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-white">Monika Jain</h3>
+                <p className="mt-1 text-gray-300">Research</p>
+              </div>
+              {/* Hemant Gautam */}
+              <div className="flex flex-col items-center">
+                <div className="bg-cyan-100 rounded-2xl overflow-hidden w-64 h-64">
+                  <img src="/team/3.jpg" alt="Hemant Gautam" className="w-full h-full object-cover" />
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-white">Hemant Gautam</h3>
+                <p className="mt-1 text-gray-300">Research & Sales</p>
+              </div>
+              {/* Saksham Jain */}
+              <div className="flex flex-col items-center">
+                <div className="bg-cyan-100 rounded-2xl overflow-hidden w-64 h-64">
+                  <img src="/team/4.jpg" alt="Saksham Jain" className="w-full h-full object-cover" />
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-white">Saksham Jain</h3>
+                <p className="mt-1 text-gray-300">Operations & Sales</p>
+              </div>
             </div>
           </div>
         </div>

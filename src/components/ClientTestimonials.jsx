@@ -2,52 +2,34 @@ import React, { useState, useEffect } from 'react';
 
 const testimonials = [
   {
-    quote: 'I am grateful for the exceptional services provided by Growthfiniti Wealth as a retired individual seeking professional guidance for managing my wealth. They consistently exhibit a disciplined and meticulous approach, crafting a personalised investment strategy that preserves capital and delivers impressive risk-adjusted returns.',
-    name: 'Mr Amitava Bala',
-    title: 'Retd. General Manager (Materials & Contracts) IOC Rajkot',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face'
+    quote: 'I am grateful for the exceptional services provided by Saksham Investments Wealth as a retired individual seeking professional guidance for managing my wealth. They consistently exhibit a disciplined and meticulous approach, crafting a personalised investment strategy that preserves capital and delivers impressive risk-adjusted returns.',
+    name: 'Yogesh kapoor',
+    avatar: '/clients/1.jpg'
   },
   {
     quote: 'The team has ensured to build a plan that is most suited to a retired professional like me. As an avid mountaineer I love trekking across the globe. I am able to achieve my dream while my investments are at work with the best guys in the profession',
-    name: 'Mr. Ulhas Deshpande',
-    title: 'Retired Senior Corporate Professional & Entrepreneur',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face'
+    name: 'Madhu Sudan Rao',
+    avatar: '/clients/2.jpg'
   },
   {
-    quote: 'As an entrepreneur I understand the risks of my business, I have left it to the team at Growthfiniti to manage my investments well & the market risks that come with it. Appreciate, how the team patiently explained the investment process and made it sound so simple!',
-    name: 'Mr. Pratik Malkan',
-    title: 'Chairman, Arpana Group of Companies',
-    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face'
+    quote: 'As an entrepreneur I understand the risks of my business, I have left it to the team at Saksham Investments to manage my investments well & the market risks that come with it. Appreciate, how the team patiently explained the investment process and made it sound so simple!',
+    name: 'Dinesh Chaturvedi',
+    avatar: '/clients/3.jpg'
   },
   {
     quote: 'From the onboarding to understanding the entire in-depth analytical process of choosing the appropriate funds as per my requirements, it seemed like a very smooth journey and left me with a feeling of absolute comfort. They value their customers and respect their aspirations, which is the most important feature, especially of a wealth outfit.',
-    name: 'Dr Mandar Nadkarni',
-    title: 'Surgical Oncology, Head - Breast Oncology, Surgeon - Colorectal Oncology',
-    avatar: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop&crop=face'
+    name: 'Sahdev Gupta',
+    avatar: '/clients/4.jpg'
   },
   {
-    quote: 'With my two decades of experience in the financial world, predominantly focusing on P&L management, budgeting, planning & accounting, thanks to our busy corporate lives we are unable to focus on our investments which need an equal attention. I had the good fortune of meeting the Growthfiniti team, who really helped me plan my investments in the best possible manner.',
-    name: 'Dr. Amit Sanghvi',
-    title: 'Cardiologist',
-    avatar: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=100&h=100&fit=crop&crop=face'
+    quote: 'With my two decades of experience in the financial world, predominantly focusing on P&L management, budgeting, planning & accounting, thanks to our busy corporate lives we are unable to focus on our investments which need an equal attention. I had the good fortune of meeting the Saksham Investments team, who really helped me plan my investments in the best possible manner.',
+    name: 'Devendra Kumar Jain',
+    avatar: '/clients/5.jpg'
   },
   {
-    quote: 'I sincerely thank the Growthfiniti team for introducing me to the world of wealth management, and showing me how seamless, instant, and secure it actually is. The experience has been amazing due to the promptness of the team and the willingness to assist especially in the need of the hour.',
-    name: 'Mrs. Poornima Subramanian',
-    title: 'Deputy CFO, ICICI Lombard',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face'
-  },
-  {
-    quote: 'As a NRI based in the USA and serviced by several wealth firms earlier in India, from my personal experience, what makes Growthfiniti stand tall from the rest is their meticulous and thought leadership process.',
-    name: 'Mr. Karunakaran Mohanasundaram',
-    title: 'Corporate Business Leader',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face'
-  },
-  {
-    quote: 'The Growthfiniti Team explained to me and my family in simple layman\'s language on how to create diverse investment portfolios, what risk management is, and provide financial guidance to a professional like me with a non-financial background.',
-    name: 'Mr. Shekhar Rapaka',
-    title: 'Business Consultant, Alumnus IIM KOLKATA, Class of 1990',
-    avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=100&h=100&fit=crop&crop=face'
+    quote: 'I sincerely thank the Saksham Investments team for introducing me to the world of wealth management, and showing me how seamless, instant, and secure it actually is. The experience has been amazing due to the promptness of the team and the willingness to assist especially in the need of the hour.',
+    name: 'H s Issar',
+    avatar: '/clients/6.jpg'
   },
 ];
 
@@ -163,7 +145,6 @@ const ClientTestimonials = () => {
                           </button>
                         )}
                       </div>
-                      
                       {/* Client Info */}
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-emerald-400/50 flex-shrink-0">
@@ -175,7 +156,9 @@ const ClientTestimonials = () => {
                         </div>
                         <div className="min-w-0 flex-1">
                           <h4 className="font-semibold text-white text-sm md:text-lg">{testimonial.name}</h4>
-                          <p className="text-gray-400 text-xs md:text-sm leading-tight">{testimonial.title}</p>
+                          {testimonial.title && (
+                            <p className="text-gray-400 text-xs md:text-sm leading-tight">{testimonial.title}</p>
+                          )}
                         </div>
                       </div>
                     </div>

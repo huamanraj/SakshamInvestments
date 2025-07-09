@@ -12,7 +12,7 @@ import {
   MobileNavMenu,
 } from "./ui/resizable-navbar";
 
-// Custom Growthfiniti Logo Component
+// Custom Saksham Investments Logo Component
 const GrowthfinitiLogo = () => {
   return (
     <a
@@ -22,7 +22,7 @@ const GrowthfinitiLogo = () => {
       {/* Logo Image */}
       <img
         src="/logo.png"
-        alt="Growthfiniti Logo"
+        alt="Saksham Investments Logo"
         className="h-14 w-auto"
       />
     </a>
