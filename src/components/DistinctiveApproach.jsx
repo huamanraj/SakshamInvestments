@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import logo from '/logodark.png';
 import Icon1 from './DistinctiveApproachSVGS/Icon1';
-import Icon2 from './DistinctiveApproachSVGS/Icon2';
-import Icon3 from './DistinctiveApproachSVGS/Icon3';
+import Icon3 from './DistinctiveApproachSVGS/Icon2';
+import Icon4 from './DistinctiveApproachSVGS/Icon3';
+import Icon2 from '/graph.png';
 
 const TimelineCard = ({ approach, index }) => {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -18,7 +19,8 @@ const TimelineCard = ({ approach, index }) => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  const icons = [Icon1, Icon2, Icon3, Icon1]; // Using Icon1 for the 4th card since we only have 3 icons
+  const icons = [Icon1, () => <img src={Icon2} alt="Graph" className="w-full h-full object-contain" />, Icon3, Icon4]; 
+
   const IconComponent = icons[index];
   
   const backgroundImages = [
