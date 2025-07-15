@@ -67,7 +67,7 @@ const NewNavbar = () => {
     console.log('WhatsApp button clicked'); // Debug log
     
     const phoneNumber = "918690044776";
-    const message = "Hi! Just came from website!";
+    const message = "Hi! I want guidance for my investments";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     
     console.log('Opening WhatsApp URL:', whatsappUrl); // Debug log

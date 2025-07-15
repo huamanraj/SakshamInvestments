@@ -73,25 +73,21 @@ const AllocationConundrum = () => {
 
   // Define bank icons and responsive size class
   const bankIcons = ['axis.svg', 'canara.svg', 'hdfc.svg', 'icici.svg', 'kotak.svg', 'mosl.svg', 'quant.svg'];
+  const bankIconsSecondRow = [
+    'bank3.png', // baja (bajajfin.svg) replaced with bank3.png
+    'bank2.png', // msvg (nsvg.svg) replaced with bank2.png
+    'sbi.svg',         // sbi.svg remains unchanged
+    'bank1.png', // sif.svg replaced with bank1.png
+    'bank4.png'  // util.svg replaced with bank4.png
+  ];
   const iconSizeClass = 'w-12 h-12 md:w-24 md:h-24';
+  const greyFilterClass = 'filter grayscale brightness-75 mix-blend-multiply';
 
   return (
     <section 
       ref={ref}
       className="h-auto pt-20 bg-[#09252c] relative overflow-hidden flex items-center justify-center"
     >
-      {/* Background Elements */}
-      <div className="absolute bottom-8 md:bottom-20 w-full px-4">
-        {/* Bank Logos */}
-        <div className="flex justify-between max-w-6xl mx-auto">
-          {bankIcons.map(icon => (
-            <img
-              key={icon}
-              src={`banks/${icon}`} alt="" className={`${iconSizeClass} mb-20`} />
-          ))}
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 text-center relative z-10">
         <motion.div
           initial="hidden"
@@ -111,7 +107,7 @@ const AllocationConundrum = () => {
             Conundrum
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto mb-16">
             {/* Mutual Funds */}
             <motion.div 
               variants={itemVariants}
@@ -208,17 +204,29 @@ const AllocationConundrum = () => {
               </motion.div>
             </motion.div>
           </div>
-        </motion.div>
-        <div style={{ width: '100%', height: '400px', position: 'relative' }}>
-          <Threads
-            amplitude={3}
-            distance={0}
-            enableMouseInteraction={true}
-          />
-        </div>
-      </div>
 
-      
+          {/* Bank Logos */}
+          <motion.div 
+            variants={itemVariants}
+            className="space-y-6 pb-8"
+          >
+            <div className="flex justify-between max-w-6xl mx-auto">
+              {bankIcons.map(icon => (
+                <img
+                  key={icon}
+                  src={`banks/${icon}`} alt="" className={`${iconSizeClass} mb-4 bg-transparent hover:rounded-full hover:bg-gray-900 ${greyFilterClass}`} />
+              ))}
+            </div>
+            <div className="flex justify-center gap-8 max-w-4xl mx-auto">
+              {bankIconsSecondRow.map(icon => (
+                <img
+                  key={icon}
+                  src={`banks/${icon}`} alt="" className={`${iconSizeClass} mb-4 hover:rounded-full hover:bg-gray-900 ${greyFilterClass}`} />
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

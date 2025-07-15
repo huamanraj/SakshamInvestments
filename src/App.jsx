@@ -25,7 +25,7 @@ import ContactPage from './pages/ContactPage';
 import FactorInvestingPage from './pages/FactorInvestingPage';
 import MutualFundPage from './pages/MutualFundPage';
 import CareersPage from './pages/CareersPage';
-
+import FunnelSection from './components/FunnelSection';
 // Admin Pages
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
@@ -42,7 +42,9 @@ const HomePage = () => {
       <HeroSection />
       <AllocationConundrum />
       <CoreCompetency />
+      <FunnelSection />
       <DistinctiveApproach />
+      
       <CEOWordSection />
       <LeadershipPortfolios />
       <TrendingBlogs />
