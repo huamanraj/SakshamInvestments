@@ -102,7 +102,7 @@ const DistinctiveApproach = () => {
       traditionalText: "Your RM is busy selling you products.",
     },
     {
-      growthfinitiText: "Implement an investment strategy based on the GrowthFiniti Efficient Frontier",
+      growthfinitiText: "Implement an investment strategy based on the Growth Efficient Frontier",
       traditionalText: "Whose portfolios may not cater to your specific needs.",
     },
     {

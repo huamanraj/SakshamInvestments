@@ -136,7 +136,7 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="banks/axis.svg" alt="" className="w-24 h-24" />
+                
               </motion.div>
             </motion.div>
 
@@ -168,7 +168,7 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="banks/axis.svg" alt="" className="w-24 h-24" />
+                
               </motion.div>
             </motion.div>
 
@@ -200,7 +200,7 @@ const AllocationConundrum = () => {
                 }}
                 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 opacity-20"
               >
-                <img src="banks/axis.svg" alt="" className="w-24 h-24" />
+                
               </motion.div>
             </motion.div>
           </div>

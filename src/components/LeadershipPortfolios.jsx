@@ -128,9 +128,6 @@ const LeadershipPortfolios = () => {
             ></div>
           ))}
         </div>
-        <p className="text-center text-gray-400 text-sm mt-4">
-          Scroll to explore our leadership portfolios
-        </p>
       </div>
     </section>
   );

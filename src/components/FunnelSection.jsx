@@ -58,7 +58,7 @@ const FunnelSection = () => {
   return (
     <section 
       ref={ref}
-      className="py-20 bg-gradient-to-br from-slate-800 via-teal-800 to-slate-900 relative overflow-hidden"
+      className="py-10 sm:py-16 md:py-20 bg-gradient-to-br from-slate-800 via-teal-800 to-slate-900 relative overflow-hidden"
     >
       {/* Animated Candlestick Chart Background */}
       <div className="absolute inset-0">
@@ -73,7 +73,7 @@ const FunnelSection = () => {
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
-          className="absolute bottom-0 left-0 right-0 h-64"
+          className="absolute bottom-0 left-0 right-0 h-32 sm:h-48 md:h-64"
         >
           <img src="/graph-img.svg" alt="" className="w-full h-full object-cover" />
         </motion.div>
@@ -94,15 +94,15 @@ const FunnelSection = () => {
               delay: index * 0.2
             }}
             className={`absolute ${
-              index % 4 === 0 ? 'top-20' : 
-              index % 4 === 1 ? 'top-40' : 
-              index % 4 === 2 ? 'top-60' : 'top-80'
+              index % 4 === 0 ? 'top-10 sm:top-20' : 
+              index % 4 === 1 ? 'top-20 sm:top-40' : 
+              index % 4 === 2 ? 'top-32 sm:top-60' : 'top-44 sm:top-80'
             } ${
-              index % 3 === 0 ? 'left-10' : 
-              index % 3 === 1 ? 'left-1/2 transform -translate-x-1/2' : 'right-10'
+              index % 3 === 0 ? 'left-4 sm:left-10' : 
+              index % 3 === 1 ? 'left-1/2 transform -translate-x-1/2' : 'right-4 sm:right-10'
             }`}
           >
-            <div className={`w-4 h-${12 + index * 2} bg-emerald-400 opacity-20 rounded-sm`}></div>
+            <div className={`w-2 sm:w-4 h-6 sm:h-${12 + index * 2} bg-emerald-400 opacity-20 rounded-sm`}></div>
           </motion.div>
         ))}
       </div>
@@ -114,7 +114,7 @@ const FunnelSection = () => {
           variants={containerVariants}
         >
           {/* Funnel Visualization */}
-          <div className="relative max-w-3xl mx-auto h-96 md:h-[500px]">
+          <div className="relative max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto h-80 sm:h-96 md:h-[500px]">
             {/* SVG Funnel */}
             <svg 
               className="absolute inset-0 w-full h-full" 
@@ -185,31 +185,31 @@ const FunnelSection = () => {
             {/* Level Labels */}
             <motion.div
               variants={itemVariants}
-              className="absolute top-16 left-1/2 transform -translate-x-1/2"
+              className="absolute top-8 sm:top-12 md:top-16 left-1/2 transform -translate-x-1/2"
             >
-              <div className="bg-slate-700/80 backdrop-blur-md rounded-lg px-6 py-3 border border-emerald-500/30">
-                <h3 className="text-white font-semibold text-lg">Universe of Options</h3>
-                <p className="text-emerald-400 text-sm">Broad Market Access</p>
+              <div className="bg-slate-700/80 backdrop-blur-md rounded-lg px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-emerald-500/30">
+                <h3 className="text-white font-semibold text-sm sm:text-base md:text-lg">Universe of Options</h3>
+                <p className="text-emerald-400 text-xs sm:text-sm">Broad Market Access</p>
               </div>
             </motion.div>
 
             <motion.div
               variants={itemVariants}
-              className="absolute top-48 left-1/2 transform -translate-x-1/2"
+              className="absolute top-32 sm:top-40 md:top-48 left-1/2 transform -translate-x-1/2"
             >
-              <div className="bg-slate-700/80 backdrop-blur-md rounded-lg px-6 py-3 border border-emerald-500/30">
-                <h3 className="text-white font-semibold text-lg">Filtered Selection</h3>
-                <p className="text-emerald-400 text-sm">Research & Analysis</p>
+              <div className="bg-slate-700/80 backdrop-blur-md rounded-lg px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-emerald-500/30">
+                <h3 className="text-white font-semibold text-sm sm:text-base md:text-lg">Filtered Selection</h3>
+                <p className="text-emerald-400 text-xs sm:text-sm">Research & Analysis</p>
               </div>
             </motion.div>
 
             <motion.div
               variants={itemVariants}
-              className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+              className="absolute bottom-12 sm:bottom-16 md:bottom-20 left-1/2 transform -translate-x-1/2"
             >
-              <div className="bg-slate-700/80 backdrop-blur-md rounded-lg px-6 py-3 border border-emerald-500/30">
-                <h3 className="text-white font-semibold text-lg">Final Portfolio</h3>
-                <p className="text-emerald-400 text-sm">Optimized Allocation</p>
+              <div className="bg-slate-700/80 backdrop-blur-md rounded-lg px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-emerald-500/30">
+                <h3 className="text-white font-semibold text-sm sm:text-base md:text-lg">Final Portfolio</h3>
+                <p className="text-emerald-400 text-xs sm:text-sm">Optimized Allocation</p>
               </div>
             </motion.div>
           </div>
@@ -229,7 +229,7 @@ const FunnelSection = () => {
                 ease: "linear",
                 delay: index * 0.5
               }}
-              className={`absolute w-2 h-2 bg-emerald-400 rounded-full ${
+              className={`absolute w-1 sm:w-2 h-1 sm:h-2 bg-emerald-400 rounded-full ${
                 index % 2 === 0 ? 'left-1/3' : 'right-1/3'
               } top-full`}
             />
